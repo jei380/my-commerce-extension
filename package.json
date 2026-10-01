@@ -1,0 +1,16 @@
+{
+    "name": "my-commerce-extension",
+    "version": "1.0.0",
+    "description": "A custom Adobe Commerce application. Fill description for your app.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "postinstall": "npx aio-commerce-lib-app hooks postinstall"
+    },
+    "author": "JEI",
+    "license": "ISC",
+    "dependencies": {
+        "@adobe/aio-commerce-lib-app": "^1.4.0",
+        "@adobe/aio-commerce-sdk": "^1.1.2"
+    }
+}

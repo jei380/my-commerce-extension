@@ -1,0 +1,149 @@
+{
+  "project": {
+    "id": "4566206088345758456",
+    "name": "237ChampagneCicada",
+    "title": "Commerce OOP Project JEI",
+    "org": {
+      "id": "3967933",
+      "name": "CommerceCohort",
+      "ims_org_id": "B139231C6912285C0A495FBE@AdobeOrg",
+      "details": {
+        "services": [
+          {
+            "name": "Adobe Express Embed SDK",
+            "code": "CCEmbedCompanionAPI",
+            "type": "adobeid"
+          },
+          {
+            "name": "Adobe Fusion",
+            "code": "Fusion-API",
+            "type": "adobeid"
+          },
+          {
+            "name": "Adobe Commerce as a Cloud Service",
+            "code": "ACCS-REST-API",
+            "type": "adobeid"
+          },
+          {
+            "name": "Lightroom Services",
+            "code": "LightroomPartnersSDK",
+            "type": "adobeid"
+          },
+          {
+            "name": "API Mesh for Adobe Developer App Builder",
+            "code": "GraphQLServiceSDK",
+            "type": "adobeid"
+          },
+          {
+            "name": "AEM Content Delivery Network (CDN) API (beta)",
+            "code": "AEM-CDN-API",
+            "type": "adobeid"
+          },
+          {
+            "name": "Frame.io API",
+            "code": "FrameioAPISDK",
+            "type": "adobeid"
+          },
+          {
+            "name": "PDF Embed API",
+            "code": "ViewSDK",
+            "type": "adobeid"
+          },
+          {
+            "name": "Adobe Commerce with Adobe ID",
+            "code": "AdobeCommerceWithAdobeID",
+            "type": "adobeid"
+          },
+          {
+            "name": "I/O Management API",
+            "code": "AdobeIOManagementAPISDK",
+            "type": "entp"
+          },
+          {
+            "name": "Adobe Brand Intelligence API",
+            "code": "ABI-SDK",
+            "type": "entp"
+          },
+          {
+            "name": "Primetime Ad Insertion",
+            "code": "Ad Config Service",
+            "type": "entp"
+          },
+          {
+            "name": "Edge Delivery Services",
+            "code": "nogw-4011f358-2edb-4b01-acb8-3c84e0cbb299",
+            "type": "entp"
+          },
+          {
+            "name": "App Builder Data Services",
+            "code": "AppBuilderDataServicesSDK",
+            "type": "entp"
+          },
+          {
+            "name": "I/O Events",
+            "code": "CloudIntegrationSDK",
+            "type": "entp"
+          },
+          {
+            "name": "Adobe Commerce as a Cloud Service",
+            "code": "ACCS-REST-API",
+            "type": "entp"
+          },
+          {
+            "name": "Adobe Express Review API",
+            "code": "ExpressReviewService",
+            "type": "entp"
+          },
+          {
+            "name": "Globalization Content Service",
+            "code": "gcs-partner",
+            "type": "entp"
+          },
+          {
+            "name": "Adobe I/O Events for Adobe Commerce",
+            "code": "commerceeventing",
+            "type": "entp"
+          }
+        ]
+      }
+    },
+    "workspace": {
+      "id": "4566206088345803588",
+      "name": "Stage",
+      "title": "Stage",
+      "action_url": "https://3967933-237champagnecicada-stage.adobeioruntime.net",
+      "app_url": "https://3967933-237champagnecicada-stage.adobeio-static.net",
+      "details": {
+        "credentials": [
+          {
+            "id": "1037381",
+            "name": "OAuth_in_Commerce_OOP_Project_JEI_-_Stage",
+            "integration_type": "oauth_server_to_server"
+          }
+        ],
+        "services": [
+          {
+            "code": "ACCS-REST-API",
+            "name": "Adobe Commerce as a Cloud Service"
+          },
+          {
+            "code": "AdobeIOManagementAPISDK",
+            "name": "I/O Management API"
+          },
+          {
+            "code": "CloudIntegrationSDK",
+            "name": "I/O Events"
+          },
+          {
+            "code": "commerceeventing",
+            "name": "Adobe I/O Events for Adobe Commerce"
+          }
+        ],
+        "events": {
+          "registrations": []
+        },
+        "mesh": {}
+      }
+    }
+  }
+}
