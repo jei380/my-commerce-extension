@@ -12,6 +12,7 @@
     "dependencies": {
         "@adobe/aio-commerce-lib-app": "^1.4.0",
         "@adobe/aio-commerce-sdk": "^1.1.2",
+        "@adobe/aio-lib-state": "^5.4.0",
         "@adobe/aio-sdk": "^6.0.0"
     }
 }
