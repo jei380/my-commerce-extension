@@ -151,6 +151,19 @@ async function main (params) {
       ttl: 604800,
     });
 
+    const knownOrdersResult = await state.get('known-order-ids');
+    let knownOrderIds = [];
+    if (knownOrdersResult && knownOrdersResult.value) {
+      knownOrderIds = JSON.parse(knownOrdersResult.value);
+    }
+    if (!knownOrderIds.includes(String(orderId))) {
+      knownOrderIds.push(String(orderId));
+      if (knownOrderIds.length > 100) {
+        knownOrderIds = knownOrderIds.slice(-100);
+      }
+      await state.put('known-order-ids', JSON.stringify(knownOrderIds), { ttl: 604800 });
+    }
+
     await state.put(`event-${eventId}`, JSON.stringify({ processedAt: new Date().toISOString() }), {
       ttl: 86400,
     });

@@ -1,9 +1,13 @@
 {
-  "course-labs/product-enrichment": "c2dab2ad676478271212ac9d7b0b07118b81d9d28b5da68ebe56efb4e21a009c",
-  "app-management/__secured_app-config": "e00e32fca9ce112fb706f26026bc8082d27d5d6ac922068980cbe8ebc6884856",
-  "app-management/__secured_installation": "663c5c01bb8a99d5bd9d68d1e76adf5c795bb7a02509d3086a6ccbf6412c3de0",
+  "course-labs/product-enrichment": "6c731a3d521d868982b5597d78a434d35cacc949bbd9ffed99763823ec46a089",
+  "app-management/__secured_app-config": "9570ecdc2cc5221059f50d84b0951d2e4c618b773c4cf90c7cbd2649cb5bcbfd",
+  "app-management/__secured_installation": "0d92d79e8df3e454e1d448321873d9106166ae79f9c6027ebeb34d1b50a968a5",
   "app-management/app-config": "1aae1338af86a359e226fa6c6b13633b7f0997d13769273107249fcccabee339",
   "app-management/installation": "8872f3be8ba106e10f4042c0df6a6d3d03a0d1a85f08e292dc8f8d68715ac868",
-  "course-labs/order-event-consumer": "6319ee4c67edd1d5b743846a480c2ad7f0708c7c2928660301cf7358bd272e13",
-  "course-labs/validate-product": "b9462cfcd7748ea62e41e84a231c57ddd82a15fc56702b8ddcf53c95864eb455"
+  "course-labs/order-event-consumer": "73b87b843a9811e4dc5fb20d863027cbfe37e321c937d07efc013f15e4a4286b",
+  "course-labs/validate-product": "1563dd8641b78a2bd6a42a0d022bd5eeaddf2375e94278726341a90bd8b794f2",
+  "course-labs/product-badging": "4d6164454a90747f1c18c71610cdb5c53d21a17956a844b2d308f8511da32ea8",
+  "app-management/__secured_association": "5881b2b934c95b6404f26e4edc590c068005821f8afc3581db1f9d8b8439366d",
+  "app-management/association": "131a3d58aa1d4ba35a47a52189555b6d0fedc899ed8c68bfcb66df1e8ed100ea",
+  "course-labs/get-enriched-orders": "a83aed241bb6b685e47ab2ea4da8d40c1c5d4c621cc4fbe28514e52e3d28630d"
 }

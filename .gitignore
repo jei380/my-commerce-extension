@@ -1,2 +1,7 @@
 node_modules/
 .env
+.aws.tmp.creds.json
+.parcel-cache/
+
+.DS_Store
+**/.DS_Store

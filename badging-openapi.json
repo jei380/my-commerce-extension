@@ -1,0 +1,52 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Product Badging API",
+    "version": "1.0.0",
+    "description": "Custom product badging service via I/O Runtime"
+  },
+  "servers": [
+    {
+      "url": "https://3967933-237champagnecicada-stage.adobeioruntime.net/api/v1/web/course-labs"
+    }
+  ],
+  "paths": {
+    "/product-badging": {
+      "get": {
+        "operationId": "getProductBadging",
+        "summary": "Get badging product data",
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The product SKU to calculate badge for"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Badging product data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sku": { "type": "string" },
+                    "name": { "type": "string" },
+                    "price": { "type": "number" },
+                    "salesPrice": { "type": "number" },
+                    "deepDiscountBadge": { "type": "string" },
+                    "enrichedAt": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

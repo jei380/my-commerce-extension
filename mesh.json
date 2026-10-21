@@ -35,6 +35,38 @@
             }
           }
         ]
+      },
+      {
+        "name": "Badging",
+        "handler": {
+          "openapi": {
+            "source": "./badging-openapi.json"
+          }
+        },
+        "transforms": [
+          {
+            "prefix": {
+              "value": "Badging_",
+              "includeRootOperations": true
+            }
+          }
+        ]
+      }
+    ],
+    "additionalTypeDefs": "extend type SimpleProductView {\n deepDiscountBadge: String\n}",
+    "additionalResolvers": [
+      {
+        "targetTypeName": "SimpleProductView",
+        "targetFieldName": "deepDiscountBadge",
+        "sourceName": "Badging",
+        "sourceTypeName": "Query",
+        "sourceFieldName": "Badging_getProductBadging",
+        "requiredSelectionSet": "{ sku }",
+        "sourceArgs": {
+          "sku": "{root.sku}"
+        },
+        "sourceSelectionSet": "{ deepDiscountBadge }",
+        "result": "deepDiscountBadge"
       }
     ]
   }

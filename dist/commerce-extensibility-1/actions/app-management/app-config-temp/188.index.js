@@ -1,0 +1,2932 @@
+"use strict";
+exports.ids = [188];
+exports.modules = {
+
+/***/ 59188
+(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   components: () => (/* binding */ components),
+/* harmony export */   "default": () => (/* binding */ openapi_default),
+/* harmony export */   info: () => (/* binding */ info),
+/* harmony export */   openapi: () => (/* binding */ openapi),
+/* harmony export */   paths: () => (/* binding */ paths),
+/* harmony export */   security: () => (/* binding */ security),
+/* harmony export */   servers: () => (/* binding */ servers),
+/* harmony export */   tags: () => (/* binding */ tags)
+/* harmony export */ });
+/**
+ * @license
+ *
+ * Copyright 2026 Adobe. All rights reserved.
+ * This file is licensed to you under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License. You may obtain a copy
+ * of the License at http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+ * OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ */
+
+//#region docs/openapi.json
+var openapi = "3.1.0";
+var info = {
+	"title": "App Management API",
+	"description": "REST API for managing Adobe Commerce App Builder apps: resolving app configuration, managing configuration values, running the installation, upgrade, and uninstallation lifecycle, and managing the scope tree.",
+	"version": "3.0.0",
+	"contact": {},
+	"license": {
+		"identifier": "Apache-2.0",
+		"name": "Apache-2.0"
+	},
+	"x-meta": { "packageVersion": "2.0.0" }
+};
+var servers = [{ "url": "/" }];
+var paths = {
+	"/app-config": { "get": {
+		"operationId": "getAppConfig",
+		"summary": "Get Commerce App Configuration",
+		"description": "Returns the Commerce App configuration after resolving and validating it against the schema. When `commerceEnv` is provided, webhooks and events are filtered to that Commerce environment; when omitted, the full, unfiltered configuration is returned.",
+		"parameters": [{
+			"name": "commerceEnv",
+			"in": "query",
+			"description": "When provided, filters the returned webhooks and events to those applicable to this Commerce environment. When omitted, the full configuration is returned.",
+			"required": false,
+			"schema": {
+				"type": "string",
+				"enum": ["paas", "saas"]
+			}
+		}, {
+			"name": "x-gw-ims-org-id",
+			"in": "header",
+			"description": "Adobe IMS organization ID that identifies the organization for the request.",
+			"required": true,
+			"schema": { "type": "string" }
+		}],
+		"responses": {
+			"200": {
+				"description": "The resolved and validated Commerce App configuration.",
+				"content": { "application/json": { "schema": {
+					"description": "Current app configuration",
+					"type": "object",
+					"properties": {
+						"metadata": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"type": "string",
+									"maxLength": 100,
+									"pattern": "^[a-zA-Z0-9-]+$"
+								},
+								"displayName": {
+									"type": "string",
+									"maxLength": 50,
+									"minLength": 1
+								},
+								"description": {
+									"type": "string",
+									"maxLength": 255,
+									"minLength": 1
+								},
+								"version": {
+									"type": "string",
+									"minLength": 1,
+									"pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$"
+								},
+								"upgradeMode": {
+									"description": "Controls upgrade execution after a deploy: \"auto\" runs the planned upgrade immediately, while \"manual\" returns the plan without executing it. Defaults to \"auto\".",
+									"type": "string",
+									"enum": ["auto", "manual"]
+								}
+							},
+							"required": [
+								"id",
+								"displayName",
+								"description",
+								"version",
+								"upgradeMode"
+							]
+						},
+						"businessConfig": {
+							"type": "object",
+							"properties": { "schema": {
+								"type": "array",
+								"items": { "oneOf": [
+									{ "oneOf": [{
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"minLength": 1
+											},
+											"label": { "type": "string" },
+											"description": { "type": "string" },
+											"env": {
+												"type": "array",
+												"items": {
+													"enum": ["paas", "saas"],
+													"type": "string"
+												},
+												"minItems": 1
+											},
+											"type": { "const": "list" },
+											"options": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"label": { "type": "string" },
+														"value": { "type": "string" }
+													},
+													"required": ["label", "value"]
+												}
+											},
+											"selectionMode": { "const": "single" },
+											"default": {
+												"type": "string",
+												"minLength": 1
+											}
+										},
+										"required": [
+											"name",
+											"type",
+											"options",
+											"selectionMode",
+											"default"
+										]
+									}, {
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"minLength": 1
+											},
+											"label": { "type": "string" },
+											"description": { "type": "string" },
+											"env": {
+												"type": "array",
+												"items": {
+													"enum": ["paas", "saas"],
+													"type": "string"
+												},
+												"minItems": 1
+											},
+											"type": { "const": "list" },
+											"options": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"label": { "type": "string" },
+														"value": { "type": "string" }
+													},
+													"required": ["label", "value"]
+												}
+											},
+											"selectionMode": { "const": "multiple" },
+											"default": {
+												"type": "array",
+												"items": {
+													"type": "string",
+													"minLength": 1
+												}
+											}
+										},
+										"required": [
+											"name",
+											"type",
+											"options",
+											"selectionMode",
+											"default"
+										]
+									}] },
+									{
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"minLength": 1
+											},
+											"label": { "type": "string" },
+											"description": { "type": "string" },
+											"env": {
+												"type": "array",
+												"items": {
+													"enum": ["paas", "saas"],
+													"type": "string"
+												},
+												"minItems": 1
+											},
+											"type": { "const": "text" },
+											"default": { "type": "string" }
+										},
+										"required": [
+											"name",
+											"type",
+											"default"
+										]
+									},
+									{
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"minLength": 1
+											},
+											"label": { "type": "string" },
+											"description": { "type": "string" },
+											"env": {
+												"type": "array",
+												"items": {
+													"enum": ["paas", "saas"],
+													"type": "string"
+												},
+												"minItems": 1
+											},
+											"type": { "const": "password" },
+											"default": { "const": "" }
+										},
+										"required": [
+											"name",
+											"type",
+											"default"
+										]
+									},
+									{
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"minLength": 1
+											},
+											"label": { "type": "string" },
+											"description": { "type": "string" },
+											"env": {
+												"type": "array",
+												"items": {
+													"enum": ["paas", "saas"],
+													"type": "string"
+												},
+												"minItems": 1
+											},
+											"type": { "const": "email" },
+											"default": { "anyOf": [{ "const": "" }, {
+												"type": "string",
+												"format": "email"
+											}] }
+										},
+										"required": [
+											"name",
+											"type",
+											"default"
+										]
+									},
+									{
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"minLength": 1
+											},
+											"label": { "type": "string" },
+											"description": { "type": "string" },
+											"env": {
+												"type": "array",
+												"items": {
+													"enum": ["paas", "saas"],
+													"type": "string"
+												},
+												"minItems": 1
+											},
+											"type": { "const": "url" },
+											"default": { "anyOf": [{ "const": "" }, {
+												"type": "string",
+												"format": "uri"
+											}] }
+										},
+										"required": [
+											"name",
+											"type",
+											"default"
+										]
+									},
+									{
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"minLength": 1
+											},
+											"label": { "type": "string" },
+											"description": { "type": "string" },
+											"env": {
+												"type": "array",
+												"items": {
+													"enum": ["paas", "saas"],
+													"type": "string"
+												},
+												"minItems": 1
+											},
+											"type": { "const": "tel" },
+											"default": { "anyOf": [{ "const": "" }, {
+												"type": "string",
+												"pattern": "^\\+?[0-9\\s\\-()]+$"
+											}] }
+										},
+										"required": [
+											"name",
+											"type",
+											"default"
+										]
+									},
+									{
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"minLength": 1
+											},
+											"label": { "type": "string" },
+											"description": { "type": "string" },
+											"env": {
+												"type": "array",
+												"items": {
+													"enum": ["paas", "saas"],
+													"type": "string"
+												},
+												"minItems": 1
+											},
+											"type": { "const": "boolean" },
+											"default": { "type": "boolean" }
+										},
+										"required": [
+											"name",
+											"type",
+											"default"
+										]
+									}
+								] },
+								"minItems": 1
+							} },
+							"required": []
+						},
+						"eventing": {
+							"type": "object",
+							"properties": {
+								"commerce": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"provider": { "$ref": "#/components/schemas/EventProvider" },
+											"events": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"label": {
+															"type": "string",
+															"maxLength": 100,
+															"minLength": 1,
+															"pattern": "^[a-zA-Z0-9 _.:()\\-,@/]+$"
+														},
+														"description": {
+															"type": "string",
+															"maxLength": 255,
+															"minLength": 1,
+															"pattern": "^[a-zA-Z0-9 _.:()\\-,@/]+$"
+														},
+														"runtimeActions": {
+															"type": "array",
+															"items": {
+																"type": "string",
+																"minLength": 1,
+																"pattern": "^[a-zA-Z0-9-]+\\/[a-zA-Z0-9-]+$"
+															}
+														},
+														"name": {
+															"type": "string",
+															"maxLength": 180,
+															"minLength": 1,
+															"pattern": "^(?:plugin|observer)\\.[a-z_]+(?:\\.[a-z_]+)*$"
+														},
+														"fields": {
+															"type": "array",
+															"items": { "$ref": "#/components/schemas/CommerceEventField" },
+															"minItems": 1
+														},
+														"rules": {
+															"type": "array",
+															"items": { "$ref": "#/components/schemas/CommerceEventRule" }
+														},
+														"destination": {
+															"type": "string",
+															"minLength": 1
+														},
+														"hipaa_audit_required": { "type": "boolean" },
+														"priority": { "type": "boolean" },
+														"force": { "type": "boolean" }
+													},
+													"required": [
+														"label",
+														"description",
+														"runtimeActions",
+														"name",
+														"fields"
+													]
+												}
+											}
+										},
+										"required": ["provider", "events"]
+									}
+								},
+								"external": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"provider": { "$ref": "#/components/schemas/EventProvider" },
+											"events": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"label": {
+															"type": "string",
+															"maxLength": 100,
+															"minLength": 1,
+															"pattern": "^[a-zA-Z0-9 _.:()\\-,@/]+$"
+														},
+														"description": {
+															"type": "string",
+															"maxLength": 255,
+															"minLength": 1,
+															"pattern": "^[a-zA-Z0-9 _.:()\\-,@/]+$"
+														},
+														"runtimeActions": {
+															"type": "array",
+															"items": {
+																"type": "string",
+																"minLength": 1,
+																"pattern": "^[a-zA-Z0-9-]+\\/[a-zA-Z0-9-]+$"
+															}
+														},
+														"name": {
+															"type": "string",
+															"maxLength": 180,
+															"minLength": 1,
+															"pattern": "^[\\w\\-_.]+$"
+														}
+													},
+													"required": [
+														"label",
+														"description",
+														"runtimeActions",
+														"name"
+													]
+												}
+											}
+										},
+										"required": ["provider", "events"]
+									}
+								}
+							},
+							"required": []
+						},
+						"adminUi": {
+							"description": "The Admin UI SDK v2 configuration block (served as the `adminUi` property of the app-config response).",
+							"$ref": "#/components/schemas/AdminUiConfiguration"
+						},
+						"installation": {
+							"type": "object",
+							"properties": {
+								"messages": {
+									"type": "object",
+									"properties": {
+										"preInstallation": {
+											"type": "string",
+											"maxLength": 1e3,
+											"minLength": 1
+										},
+										"postInstallation": {
+											"type": "string",
+											"maxLength": 1e3,
+											"minLength": 1
+										}
+									},
+									"required": []
+								},
+								"customInstallationSteps": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"script": {
+												"type": "string",
+												"minLength": 1,
+												"pattern": "^(?:\\.{0,2}\\/)*[\\w-/]*[\\w-]+\\.js$"
+											},
+											"name": {
+												"type": "string",
+												"maxLength": 255,
+												"minLength": 1
+											},
+											"description": {
+												"type": "string",
+												"maxLength": 255,
+												"minLength": 1
+											}
+										},
+										"required": [
+											"script",
+											"name",
+											"description"
+										]
+									}
+								}
+							},
+							"required": []
+						},
+						"webhooks": {
+							"type": "array",
+							"items": { "oneOf": [{ "$ref": "#/components/schemas/RuntimeActionWebhookConfig" }, { "$ref": "#/components/schemas/ExternalUrlWebhookConfig" }] },
+							"minItems": 1
+						},
+						"openApiSpecUrl": {
+							"description": "URL of the OpenAPI spec for this deployment, scoped to the active capabilities. Includes a content-addressed cache key as a query parameter.",
+							"type": "string",
+							"format": "uri",
+							"examples": ["https://123456-projectname-workspacename.adobeioruntime.net/api/v1/web/app-management/app-config/openapi.json?ck=4f6a2b9c"]
+						}
+					},
+					"additionalProperties": true,
+					"required": ["metadata", "openApiSpecUrl"]
+				} } }
+			},
+			"401": { "description": "You are not authorized to access this resource. Ensure the IMS token and the x-gw-ims-org-id header are correctly set and valid." },
+			"403": { "description": "The access token is valid, but it is not allowed to access the requested organization or operation." },
+			"500": {
+				"description": "An unexpected server error occurred.",
+				"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+			}
+		},
+		"tags": ["App Metadata"]
+	} },
+	"/config": {
+		"get": {
+			"operationId": "getConfiguration",
+			"summary": "Get Configuration Values",
+			"description": "Returns the application configuration schema and the stored values for the requested scope.",
+			"parameters": [
+				{
+					"name": "scopeId",
+					"in": "query",
+					"required": true,
+					"schema": {
+						"type": "string",
+						"minLength": 1
+					}
+				},
+				{
+					"name": "commerceEnv",
+					"in": "query",
+					"required": false,
+					"schema": {
+						"type": "string",
+						"enum": ["paas", "saas"]
+					}
+				},
+				{
+					"name": "x-gw-ims-org-id",
+					"in": "header",
+					"description": "Adobe IMS organization ID that identifies the organization for the request.",
+					"required": true,
+					"schema": { "type": "string" }
+				}
+			],
+			"responses": {
+				"200": {
+					"description": "The configuration schema and the stored configuration values for the requested scope. Password fields are masked in the response.",
+					"content": { "application/json": { "schema": {
+						"description": "Current configuration values for the given scope",
+						"type": "object",
+						"properties": {
+							"schema": {
+								"type": "array",
+								"items": { "oneOf": [
+									{ "oneOf": [{
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"minLength": 1
+											},
+											"label": { "type": "string" },
+											"description": { "type": "string" },
+											"env": {
+												"type": "array",
+												"items": {
+													"enum": ["paas", "saas"],
+													"type": "string"
+												},
+												"minItems": 1
+											},
+											"type": { "const": "list" },
+											"options": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"label": { "type": "string" },
+														"value": { "type": "string" }
+													},
+													"required": ["label", "value"]
+												}
+											},
+											"selectionMode": { "const": "single" },
+											"default": {
+												"type": "string",
+												"minLength": 1
+											}
+										},
+										"required": [
+											"name",
+											"type",
+											"options",
+											"selectionMode",
+											"default"
+										]
+									}, {
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"minLength": 1
+											},
+											"label": { "type": "string" },
+											"description": { "type": "string" },
+											"env": {
+												"type": "array",
+												"items": {
+													"enum": ["paas", "saas"],
+													"type": "string"
+												},
+												"minItems": 1
+											},
+											"type": { "const": "list" },
+											"options": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"label": { "type": "string" },
+														"value": { "type": "string" }
+													},
+													"required": ["label", "value"]
+												}
+											},
+											"selectionMode": { "const": "multiple" },
+											"default": {
+												"type": "array",
+												"items": {
+													"type": "string",
+													"minLength": 1
+												}
+											}
+										},
+										"required": [
+											"name",
+											"type",
+											"options",
+											"selectionMode",
+											"default"
+										]
+									}] },
+									{
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"minLength": 1
+											},
+											"label": { "type": "string" },
+											"description": { "type": "string" },
+											"env": {
+												"type": "array",
+												"items": {
+													"enum": ["paas", "saas"],
+													"type": "string"
+												},
+												"minItems": 1
+											},
+											"type": { "const": "text" },
+											"default": { "type": "string" }
+										},
+										"required": [
+											"name",
+											"type",
+											"default"
+										]
+									},
+									{
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"minLength": 1
+											},
+											"label": { "type": "string" },
+											"description": { "type": "string" },
+											"env": {
+												"type": "array",
+												"items": {
+													"enum": ["paas", "saas"],
+													"type": "string"
+												},
+												"minItems": 1
+											},
+											"type": { "const": "password" },
+											"default": { "const": "" }
+										},
+										"required": [
+											"name",
+											"type",
+											"default"
+										]
+									},
+									{
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"minLength": 1
+											},
+											"label": { "type": "string" },
+											"description": { "type": "string" },
+											"env": {
+												"type": "array",
+												"items": {
+													"enum": ["paas", "saas"],
+													"type": "string"
+												},
+												"minItems": 1
+											},
+											"type": { "const": "email" },
+											"default": { "anyOf": [{ "const": "" }, {
+												"type": "string",
+												"format": "email"
+											}] }
+										},
+										"required": [
+											"name",
+											"type",
+											"default"
+										]
+									},
+									{
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"minLength": 1
+											},
+											"label": { "type": "string" },
+											"description": { "type": "string" },
+											"env": {
+												"type": "array",
+												"items": {
+													"enum": ["paas", "saas"],
+													"type": "string"
+												},
+												"minItems": 1
+											},
+											"type": { "const": "url" },
+											"default": { "anyOf": [{ "const": "" }, {
+												"type": "string",
+												"format": "uri"
+											}] }
+										},
+										"required": [
+											"name",
+											"type",
+											"default"
+										]
+									},
+									{
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"minLength": 1
+											},
+											"label": { "type": "string" },
+											"description": { "type": "string" },
+											"env": {
+												"type": "array",
+												"items": {
+													"enum": ["paas", "saas"],
+													"type": "string"
+												},
+												"minItems": 1
+											},
+											"type": { "const": "tel" },
+											"default": { "anyOf": [{ "const": "" }, {
+												"type": "string",
+												"pattern": "^\\+?[0-9\\s\\-()]+$"
+											}] }
+										},
+										"required": [
+											"name",
+											"type",
+											"default"
+										]
+									},
+									{
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"minLength": 1
+											},
+											"label": { "type": "string" },
+											"description": { "type": "string" },
+											"env": {
+												"type": "array",
+												"items": {
+													"enum": ["paas", "saas"],
+													"type": "string"
+												},
+												"minItems": 1
+											},
+											"type": { "const": "boolean" },
+											"default": { "type": "boolean" }
+										},
+										"required": [
+											"name",
+											"type",
+											"default"
+										]
+									}
+								] }
+							},
+							"values": {
+								"type": "object",
+								"properties": {
+									"scope": { "$ref": "#/components/schemas/ConfigScope" },
+									"config": {
+										"type": "array",
+										"items": { "$ref": "#/components/schemas/ConfigValue" }
+									}
+								},
+								"required": ["scope", "config"]
+							}
+						},
+						"required": ["schema", "values"]
+					} } }
+				},
+				"400": {
+					"description": "The request is invalid or could not be parsed.",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ValidationErrorResponse" } } }
+				},
+				"401": { "description": "You are not authorized to access this resource. Ensure the IMS token and the x-gw-ims-org-id header are correctly set and valid." },
+				"403": { "description": "The access token is valid, but it is not allowed to access the requested organization or operation." },
+				"500": {
+					"description": "An unexpected server error occurred.",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+				}
+			},
+			"tags": ["Business Configuration"]
+		},
+		"patch": {
+			"operationId": "patchConfiguration",
+			"summary": "Patch Configuration Values",
+			"description": "Partially updates configuration values for a scope. Unsets those values that are sent with a null value.",
+			"parameters": [{
+				"name": "x-gw-ims-org-id",
+				"in": "header",
+				"description": "Adobe IMS organization ID that identifies the organization for the request.",
+				"required": true,
+				"schema": { "type": "string" }
+			}],
+			"requestBody": {
+				"required": true,
+				"content": { "application/json": { "schema": {
+					"type": "object",
+					"properties": {
+						"scopeId": {
+							"type": "string",
+							"minLength": 1
+						},
+						"config": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string",
+										"minLength": 1
+									},
+									"value": { "anyOf": [{ "anyOf": [
+										{ "type": "boolean" },
+										{ "type": "string" },
+										{
+											"type": "array",
+											"items": { "type": "string" }
+										}
+									] }, { "type": "null" }] }
+								},
+								"required": ["name", "value"]
+							}
+						}
+					},
+					"required": ["scopeId", "config"]
+				} } }
+			},
+			"responses": {
+				"200": {
+					"description": "The configuration values were successfully updated. Returns the updated configuration with password fields masked.",
+					"headers": { "Cache-Control": {
+						"description": "Prevents clients from caching configuration mutation responses.",
+						"schema": { "const": "no-store" }
+					} },
+					"content": { "application/json": { "schema": {
+						"description": "Configuration values updated for the given scope",
+						"type": "object",
+						"properties": {
+							"message": { "type": "string" },
+							"timestamp": {
+								"type": "string",
+								"format": "date-time"
+							},
+							"scope": { "$ref": "#/components/schemas/ConfigScope" },
+							"config": {
+								"type": "array",
+								"items": { "$ref": "#/components/schemas/ConfigUpdateEntry" }
+							}
+						},
+						"required": [
+							"message",
+							"timestamp",
+							"scope",
+							"config"
+						]
+					} } }
+				},
+				"400": {
+					"description": "The request is invalid or could not be parsed.",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ValidationErrorResponse" } } }
+				},
+				"401": { "description": "You are not authorized to access this resource. Ensure the IMS token and the x-gw-ims-org-id header are correctly set and valid." },
+				"403": { "description": "The access token is valid, but it is not allowed to access the requested organization or operation." },
+				"500": {
+					"description": "An unexpected server error occurred.",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+				}
+			},
+			"tags": ["Business Configuration"]
+		}
+	},
+	"/installation": {
+		"get": {
+			"operationId": "getInstallationState",
+			"summary": "Get Installation State",
+			"description": "Returns the current installation workflow state. When `x-aio-commerce-installation-invocation-source` is `post-app-deploy`, returns the latest lifecycle attempt without its plan instead.",
+			"parameters": [{
+				"name": "x-gw-ims-org-id",
+				"in": "header",
+				"description": "Adobe IMS organization ID that identifies the organization for the request.",
+				"required": true,
+				"schema": { "type": "string" }
+			}, {
+				"name": "x-aio-commerce-installation-invocation-source",
+				"in": "header",
+				"description": "Identifies the source of the request. When set to `post-app-deploy`, the latest lifecycle attempt is returned without its plan.",
+				"required": false,
+				"schema": {
+					"type": "string",
+					"enum": ["post-app-deploy"]
+				}
+			}],
+			"responses": {
+				"200": {
+					"description": "The current installation workflow state, or the latest lifecycle attempt without its plan for a post-deploy request.",
+					"content": { "application/json": { "schema": { "oneOf": [
+						{ "$ref": "#/components/schemas/InProgressWorkflowState" },
+						{ "$ref": "#/components/schemas/SucceededWorkflowState" },
+						{ "$ref": "#/components/schemas/FailedWorkflowState" },
+						{ "$ref": "#/components/schemas/LifecycleAttemptState" }
+					] } } }
+				},
+				"204": { "description": "No installation workflow state or lifecycle attempt has been stored yet." },
+				"401": { "description": "You are not authorized to access this resource. Ensure the IMS token and the x-gw-ims-org-id header are correctly set and valid." },
+				"403": { "description": "The access token is valid, but it is not allowed to access the requested organization or operation." },
+				"500": {
+					"description": "An unexpected server error occurred.",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+				}
+			},
+			"tags": ["Management"]
+		},
+		"post": {
+			"operationId": "reconcileInstallation",
+			"summary": "Reconcile Installation (Install or Upgrade)",
+			"description": "Desired-state endpoint. Reconciles the app toward the target configuration: when no installation baseline exists it installs the app, except for `post-app-deploy` invocations, which return `409 not-installed`; when a baseline exists it upgrades from the baseline to the version declared in `metadata.version`. An upgrade must keep the installed `metadata.id`; a different application ID is rejected before planning. The chosen branch is reported in the response `operation` field.",
+			"parameters": [{
+				"name": "x-gw-ims-org-id",
+				"in": "header",
+				"description": "Adobe IMS organization ID that identifies the organization for the request.",
+				"required": true,
+				"schema": { "type": "string" }
+			}, {
+				"name": "x-aio-commerce-installation-invocation-source",
+				"in": "header",
+				"description": "Identifies the source of the request. The generated post-deploy hook sends `post-app-deploy`; when that source is present and the app is not installed, reconciliation returns `409 not-installed` instead of starting a first-time installation.",
+				"required": false,
+				"schema": {
+					"type": "string",
+					"enum": ["post-app-deploy"]
+				}
+			}],
+			"requestBody": {
+				"required": true,
+				"content": { "application/json": { "schema": {
+					"type": "object",
+					"properties": {
+						"appData": { "$ref": "#/components/schemas/AppData" },
+						"commerceBaseUrl": {
+							"description": "Commerce instance base URL. Required for a first-time installation; for an upgrade it is optional and derived from the existing Commerce association.",
+							"type": "string"
+						},
+						"commerceEnv": {
+							"description": "Commerce deployment flavor. Required for a first-time installation; for an upgrade it is optional and derived from the existing Commerce association.",
+							"type": "string",
+							"enum": ["paas", "saas"]
+						},
+						"ioEventsUrl": { "type": "string" },
+						"ioEventsEnv": { "type": "string" }
+					},
+					"required": [
+						"appData",
+						"ioEventsUrl",
+						"ioEventsEnv"
+					]
+				} } }
+			},
+			"responses": {
+				"200": {
+					"description": "Manual-mode upgrade: the upgrade plan was created or reused and returned without starting execution (`metadata.upgradeMode` is `manual`).",
+					"content": { "application/json": { "schema": {
+						"type": "object",
+						"properties": {
+							"message": { "type": "string" },
+							"operation": { "const": "upgrade" },
+							"plan": {
+								"description": "The planned upgrade, spanning every participating domain.",
+								"type": "object",
+								"additionalProperties": true
+							}
+						},
+						"required": [
+							"message",
+							"operation",
+							"plan"
+						]
+					} } }
+				},
+				"202": {
+					"description": "The operation was accepted for asynchronous execution: either a first-time installation or an automatic upgrade. The `operation` field indicates which branch ran.",
+					"content": { "application/json": { "schema": { "oneOf": [{
+						"description": "A first-time installation was accepted and queued.",
+						"type": "object",
+						"properties": {
+							"message": { "type": "string" },
+							"operation": { "const": "install" },
+							"activationId": { "type": "string" },
+							"id": { "type": "string" },
+							"status": { "const": "in-progress" },
+							"startedAt": {
+								"type": "string",
+								"format": "date-time"
+							},
+							"step": { "$ref": "#/components/schemas/StepStatus" },
+							"config": {
+								"description": "The validated app configuration recorded at install time. Present so uninstallation can be sourced from what was actually installed rather than the current request config. Absent on states persisted before this field was introduced.",
+								"type": "object",
+								"additionalProperties": true
+							},
+							"data": { "anyOf": [{
+								"type": "object",
+								"propertyNames": { "type": "string" },
+								"additionalProperties": {}
+							}, { "type": "null" }] }
+						},
+						"required": [
+							"message",
+							"operation",
+							"activationId",
+							"id",
+							"status",
+							"startedAt",
+							"step",
+							"data"
+						]
+					}, {
+						"description": "An automatic upgrade was planned and its execution started asynchronously.",
+						"type": "object",
+						"properties": {
+							"message": { "type": "string" },
+							"operation": { "const": "upgrade" },
+							"plan": {
+								"description": "The planned upgrade, spanning every participating domain.",
+								"type": "object",
+								"additionalProperties": true
+							}
+						},
+						"required": [
+							"message",
+							"operation",
+							"plan"
+						]
+					}] } } }
+				},
+				"400": {
+					"description": "The request is invalid or could not be parsed (for example, a first-time installation without a `commerceBaseUrl`).",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ValidationErrorResponse" } } }
+				},
+				"401": { "description": "You are not authorized to access this resource. Ensure the IMS token and the x-gw-ims-org-id header are correctly set and valid." },
+				"403": { "description": "The access token is valid, but it is not allowed to access the requested organization or operation." },
+				"409": {
+					"description": "The request is not actionable. This covers both non-actionable no-op states and real failures. A `409` carrying a `reason` is a graceful no-op the caller can ignore: `not-installed` (a post-deploy invocation cannot install the app), `not-associated` (the app is not associated with a Commerce instance), or `already-current` (the installed version already matches `metadata.version`). A `409` without a `reason` is a real failure — for example, an installation already running or completed, an attempted change to the installed `metadata.id`, or upgrade planning blocked by configuration `issues`.",
+					"content": { "application/json": { "schema": {
+						"type": "object",
+						"properties": {
+							"message": { "type": "string" },
+							"reason": {
+								"description": "Present only for non-actionable no-op states.",
+								"type": "string",
+								"enum": [
+									"not-installed",
+									"not-associated",
+									"already-current"
+								]
+							},
+							"issues": {
+								"description": "Blocking issues reported when upgrade planning is blocked.",
+								"type": "array",
+								"items": {
+									"type": "object",
+									"additionalProperties": true
+								}
+							}
+						},
+						"required": ["message"]
+					} } }
+				},
+				"500": {
+					"description": "An unexpected server error occurred.",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+				}
+			},
+			"tags": ["Management"]
+		}
+	},
+	"/installation/validation": { "post": {
+		"operationId": "validateInstallation",
+		"summary": "Validate Installation",
+		"description": "Validates the installation inputs and workflow steps without starting installation.",
+		"parameters": [{
+			"name": "x-gw-ims-org-id",
+			"in": "header",
+			"description": "Adobe IMS organization ID that identifies the organization for the request.",
+			"required": true,
+			"schema": { "type": "string" }
+		}],
+		"requestBody": {
+			"required": true,
+			"content": { "application/json": { "schema": {
+				"type": "object",
+				"properties": {
+					"appData": { "$ref": "#/components/schemas/AppData" },
+					"commerceBaseUrl": { "type": "string" },
+					"commerceEnv": {
+						"type": "string",
+						"enum": ["paas", "saas"]
+					},
+					"ioEventsUrl": { "type": "string" },
+					"ioEventsEnv": { "type": "string" }
+				},
+				"required": [
+					"appData",
+					"commerceBaseUrl",
+					"commerceEnv",
+					"ioEventsUrl",
+					"ioEventsEnv"
+				]
+			} } }
+		},
+		"responses": {
+			"200": {
+				"description": "The validation result, including issue counts and per-step validation results.",
+				"content": { "application/json": { "schema": {
+					"type": "object",
+					"properties": {
+						"valid": { "type": "boolean" },
+						"summary": {
+							"type": "object",
+							"properties": {
+								"totalIssues": { "type": "number" },
+								"errors": { "type": "number" },
+								"warnings": { "type": "number" }
+							},
+							"required": [
+								"totalIssues",
+								"errors",
+								"warnings"
+							]
+						},
+						"result": { "$ref": "#/components/schemas/StepValidationResult" }
+					},
+					"required": [
+						"valid",
+						"summary",
+						"result"
+					]
+				} } }
+			},
+			"400": {
+				"description": "The request is invalid or could not be parsed.",
+				"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ValidationErrorResponse" } } }
+			},
+			"401": { "description": "You are not authorized to access this resource. Ensure the IMS token and the x-gw-ims-org-id header are correctly set and valid." },
+			"403": { "description": "The access token is valid, but it is not allowed to access the requested organization or operation." },
+			"500": {
+				"description": "An unexpected server error occurred.",
+				"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+			}
+		},
+		"tags": ["Management"]
+	} },
+	"/installation/uninstallation": {
+		"get": {
+			"operationId": "getUninstallationState",
+			"summary": "Get Uninstallation State",
+			"description": "Returns the current uninstallation workflow state if an uninstallation has been started.",
+			"parameters": [{
+				"name": "x-gw-ims-org-id",
+				"in": "header",
+				"description": "Adobe IMS organization ID that identifies the organization for the request.",
+				"required": true,
+				"schema": { "type": "string" }
+			}],
+			"responses": {
+				"200": {
+					"description": "The current uninstallation workflow state.",
+					"content": { "application/json": { "schema": {
+						"discriminator": {
+							"propertyName": "status",
+							"mapping": {
+								"in-progress": "#/components/schemas/InProgressWorkflowState",
+								"succeeded": "#/components/schemas/SucceededWorkflowState",
+								"failed": "#/components/schemas/FailedWorkflowState"
+							}
+						},
+						"oneOf": [
+							{ "$ref": "#/components/schemas/InProgressWorkflowState" },
+							{ "$ref": "#/components/schemas/SucceededWorkflowState" },
+							{ "$ref": "#/components/schemas/FailedWorkflowState" }
+						]
+					} } }
+				},
+				"204": { "description": "No uninstallation workflow state has been stored yet." },
+				"401": { "description": "You are not authorized to access this resource. Ensure the IMS token and the x-gw-ims-org-id header are correctly set and valid." },
+				"403": { "description": "The access token is valid, but it is not allowed to access the requested organization or operation." },
+				"500": {
+					"description": "An unexpected server error occurred.",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+				}
+			},
+			"tags": ["Management"]
+		},
+		"post": {
+			"operationId": "startUninstallation",
+			"summary": "Start Uninstallation",
+			"description": "Starts the uninstallation workflow and stores the initial execution state.",
+			"parameters": [{
+				"name": "x-gw-ims-org-id",
+				"in": "header",
+				"description": "Adobe IMS organization ID that identifies the organization for the request.",
+				"required": true,
+				"schema": { "type": "string" }
+			}],
+			"requestBody": {
+				"required": true,
+				"content": { "application/json": { "schema": {
+					"type": "object",
+					"properties": {
+						"appData": { "$ref": "#/components/schemas/AppData" },
+						"commerceBaseUrl": { "type": "string" },
+						"commerceEnv": {
+							"type": "string",
+							"enum": ["paas", "saas"]
+						},
+						"ioEventsUrl": { "type": "string" },
+						"ioEventsEnv": { "type": "string" }
+					},
+					"required": [
+						"appData",
+						"commerceBaseUrl",
+						"commerceEnv",
+						"ioEventsUrl",
+						"ioEventsEnv"
+					]
+				} } }
+			},
+			"responses": {
+				"202": {
+					"description": "The uninstallation workflow was accepted and queued for asynchronous execution.",
+					"content": { "application/json": { "schema": {
+						"type": "object",
+						"properties": {
+							"message": { "type": "string" },
+							"activationId": { "type": "string" },
+							"id": { "type": "string" },
+							"status": { "const": "in-progress" },
+							"startedAt": {
+								"type": "string",
+								"format": "date-time"
+							},
+							"step": { "$ref": "#/components/schemas/StepStatus" },
+							"config": {
+								"description": "The validated app configuration recorded at install time. Present so uninstallation can be sourced from what was actually installed rather than the current request config. Absent on states persisted before this field was introduced.",
+								"type": "object",
+								"additionalProperties": true
+							},
+							"data": { "anyOf": [{
+								"type": "object",
+								"propertyNames": { "type": "string" },
+								"additionalProperties": {}
+							}, { "type": "null" }] }
+						},
+						"required": [
+							"message",
+							"activationId",
+							"id",
+							"status",
+							"startedAt",
+							"step",
+							"data"
+						]
+					} } }
+				},
+				"400": {
+					"description": "The request is invalid or could not be parsed.",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ValidationErrorResponse" } } }
+				},
+				"401": { "description": "You are not authorized to access this resource. Ensure the IMS token and the x-gw-ims-org-id header are correctly set and valid." },
+				"403": { "description": "The access token is valid, but it is not allowed to access the requested organization or operation." },
+				"409": {
+					"description": "The uninstallation workflow is already running.",
+					"content": { "application/json": { "schema": {
+						"type": "object",
+						"properties": { "message": { "type": "string" } },
+						"required": ["message"]
+					} } }
+				},
+				"500": {
+					"description": "An unexpected server error occurred.",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+				}
+			},
+			"tags": ["Management"]
+		},
+		"delete": {
+			"operationId": "clearUninstallationState",
+			"summary": "Clear Uninstallation State",
+			"description": "Clears the stored uninstallation workflow state without starting offboarding.",
+			"parameters": [{
+				"name": "x-gw-ims-org-id",
+				"in": "header",
+				"description": "Adobe IMS organization ID that identifies the organization for the request.",
+				"required": true,
+				"schema": { "type": "string" }
+			}],
+			"responses": {
+				"204": { "description": "The stored uninstallation workflow state was cleared." },
+				"401": { "description": "You are not authorized to access this resource. Ensure the IMS token and the x-gw-ims-org-id header are correctly set and valid." },
+				"403": { "description": "The access token is valid, but it is not allowed to access the requested organization or operation." },
+				"500": {
+					"description": "An unexpected server error occurred.",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+				}
+			},
+			"tags": ["Management"]
+		}
+	},
+	"/scope-tree": {
+		"get": {
+			"operationId": "getScopeTree",
+			"summary": "Get Scope Tree",
+			"description": "Returns the scope tree used by Commerce configuration flows.",
+			"parameters": [{
+				"name": "x-gw-ims-org-id",
+				"in": "header",
+				"description": "Adobe IMS organization ID that identifies the organization for the request.",
+				"required": true,
+				"schema": { "type": "string" }
+			}],
+			"responses": {
+				"200": {
+					"description": "The current scope tree, freshly fetched.",
+					"content": { "application/json": { "schema": {
+						"type": "object",
+						"properties": { "scopes": {
+							"type": "array",
+							"items": { "$ref": "#/components/schemas/ScopeNode" }
+						} },
+						"required": ["scopes"]
+					} } }
+				},
+				"203": {
+					"description": "The scope tree returned from cache or persisted storage.",
+					"headers": { "x-cache": {
+						"description": "Indicates that the returned scope tree came from cache.",
+						"schema": { "const": "hit" }
+					} },
+					"content": { "application/json": { "schema": {
+						"description": "Cached scope tree",
+						"type": "object",
+						"properties": { "scopes": {
+							"type": "array",
+							"items": { "$ref": "#/components/schemas/ScopeNode" }
+						} },
+						"required": ["scopes"]
+					} } }
+				},
+				"401": { "description": "You are not authorized to access this resource. Ensure the IMS token and the x-gw-ims-org-id header are correctly set and valid." },
+				"403": { "description": "The access token is valid, but it is not allowed to access the requested organization or operation." },
+				"500": {
+					"description": "An unexpected server error occurred.",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+				}
+			},
+			"tags": ["Business Configuration"]
+		},
+		"put": {
+			"operationId": "setCustomScopeTree",
+			"summary": "Set Custom Scope Tree",
+			"description": "Stores a custom scope tree to override the synchronized Commerce scope tree.",
+			"parameters": [{
+				"name": "x-gw-ims-org-id",
+				"in": "header",
+				"description": "Adobe IMS organization ID that identifies the organization for the request.",
+				"required": true,
+				"schema": { "type": "string" }
+			}],
+			"requestBody": {
+				"required": true,
+				"content": { "application/json": { "schema": {
+					"type": "object",
+					"properties": { "scopes": {
+						"description": "Custom scopes to store. Each code+level combination must be unique across the entire recursive tree.",
+						"type": "array",
+						"items": { "$ref": "#/components/schemas/CustomScopeInput" }
+					} },
+					"required": ["scopes"]
+				} } }
+			},
+			"responses": {
+				"200": {
+					"description": "The stored custom scope tree result.",
+					"headers": { "Cache-Control": {
+						"description": "Prevents clients from caching custom scope tree mutation responses.",
+						"schema": { "const": "no-store" }
+					} },
+					"content": { "application/json": { "schema": {
+						"type": "object",
+						"properties": { "result": {
+							"type": "object",
+							"properties": {
+								"message": { "const": "Custom scope tree updated successfully" },
+								"timestamp": {
+									"type": "string",
+									"format": "date-time"
+								},
+								"scopes": {
+									"type": "array",
+									"items": { "$ref": "#/components/schemas/CustomScopeOutput" }
+								}
+							},
+							"required": [
+								"message",
+								"timestamp",
+								"scopes"
+							]
+						} },
+						"required": ["result"]
+					} } }
+				},
+				"400": {
+					"description": "The request body is invalid: the scopes array is missing or not an array, a scope is missing a required field or has an invalid type, a scope uses a reserved code (commerce or global), or two scopes share the same code and level.",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ValidationErrorResponse" } } }
+				},
+				"401": { "description": "You are not authorized to access this resource. Ensure the IMS token and the x-gw-ims-org-id header are correctly set and valid." },
+				"403": { "description": "The access token is valid, but it is not allowed to access the requested organization or operation." },
+				"500": {
+					"description": "An unexpected server error occurred.",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+				}
+			},
+			"tags": ["Business Configuration"]
+		}
+	},
+	"/scope-tree/commerce": {
+		"post": {
+			"operationId": "syncCommerceScopes",
+			"summary": "Sync Commerce Scopes",
+			"description": "Synchronizes scope data from Adobe Commerce and updates the local scope tree.",
+			"parameters": [{
+				"name": "x-gw-ims-org-id",
+				"in": "header",
+				"description": "Adobe IMS organization ID that identifies the organization for the request.",
+				"required": true,
+				"schema": { "type": "string" }
+			}],
+			"requestBody": {
+				"required": true,
+				"content": { "application/json": { "schema": {
+					"type": "object",
+					"properties": {
+						"commerceBaseUrl": {
+							"type": "string",
+							"minLength": 1
+						},
+						"commerceEnv": {
+							"type": "string",
+							"enum": ["paas", "saas"]
+						}
+					},
+					"required": ["commerceBaseUrl"]
+				} } }
+			},
+			"responses": {
+				"200": {
+					"description": "The synchronized Commerce scope tree.",
+					"content": { "application/json": { "schema": {
+						"type": "object",
+						"properties": {
+							"scopes": {
+								"type": "array",
+								"items": { "$ref": "#/components/schemas/ScopeNode" }
+							},
+							"synced": { "const": true }
+						},
+						"required": ["scopes", "synced"]
+					} } }
+				},
+				"203": {
+					"description": "The cached scope tree returned when Commerce scopes could not be freshly fetched.",
+					"headers": { "x-cache": {
+						"description": "Indicates that the returned scope tree came from cache.",
+						"schema": { "const": "hit" }
+					} },
+					"content": { "application/json": { "schema": {
+						"type": "object",
+						"properties": {
+							"scopes": {
+								"type": "array",
+								"items": { "$ref": "#/components/schemas/ScopeNode" }
+							},
+							"synced": { "const": false }
+						},
+						"required": ["scopes", "synced"]
+					} } }
+				},
+				"400": {
+					"description": "The request is invalid or could not be parsed.",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ValidationErrorResponse" } } }
+				},
+				"401": { "description": "You are not authorized to access this resource. Ensure the IMS token and the x-gw-ims-org-id header are correctly set and valid." },
+				"403": { "description": "The access token is valid, but it is not allowed to access the requested organization or operation." },
+				"500": {
+					"description": "An unexpected server error occurred.",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+				}
+			},
+			"tags": ["Business Configuration"]
+		},
+		"delete": {
+			"operationId": "unsyncCommerceScopes",
+			"summary": "Unsync Commerce Scopes",
+			"description": "Removes the synchronized Commerce scope tree and returns the unsync result (or a no-op message if no scopes were stored).",
+			"parameters": [{
+				"name": "x-gw-ims-org-id",
+				"in": "header",
+				"description": "Adobe IMS organization ID that identifies the organization for the request.",
+				"required": true,
+				"schema": { "type": "string" }
+			}],
+			"responses": {
+				"200": {
+					"description": "The result of removing synchronized Commerce scope data.",
+					"content": { "application/json": { "schema": {
+						"type": "object",
+						"properties": { "message": { "enum": ["Commerce scopes unsynced successfully", "No commerce scopes to unsync"] } },
+						"required": ["message"]
+					} } }
+				},
+				"401": { "description": "You are not authorized to access this resource. Ensure the IMS token and the x-gw-ims-org-id header are correctly set and valid." },
+				"403": { "description": "The access token is valid, but it is not allowed to access the requested organization or operation." },
+				"500": {
+					"description": "An unexpected server error occurred.",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+				}
+			},
+			"tags": ["Business Configuration"]
+		}
+	},
+	"/association": {
+		"post": {
+			"operationId": "setAssociation",
+			"summary": "Store Commerce Association",
+			"description": "Persists the Commerce instance the app is associated with so runtime actions can later retrieve it via the SDK helpers.",
+			"parameters": [{
+				"name": "x-gw-ims-org-id",
+				"in": "header",
+				"description": "Adobe IMS organization ID that identifies the organization for the request.",
+				"required": true,
+				"schema": { "type": "string" }
+			}],
+			"requestBody": {
+				"required": true,
+				"content": { "application/json": { "schema": {
+					"type": "object",
+					"properties": {
+						"commerceBaseUrl": {
+							"description": "Commerce API base URL of the associated instance.",
+							"type": "string",
+							"format": "uri"
+						},
+						"commerceEnv": {
+							"description": "Deployment type of the associated Commerce instance.",
+							"type": "string",
+							"enum": ["saas", "paas"]
+						}
+					},
+					"required": ["commerceBaseUrl", "commerceEnv"]
+				} } }
+			},
+			"responses": {
+				"204": { "description": "Association data stored successfully." },
+				"400": {
+					"description": "Bad request, the request body is invalid.",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+				},
+				"401": { "description": "You are not authorized to access this resource. Ensure the IMS token and the x-gw-ims-org-id header are correctly set and valid." },
+				"403": { "description": "The access token is valid, but it is not allowed to access the requested organization or operation." },
+				"500": {
+					"description": "Internal server error while storing the association data.",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+				}
+			},
+			"tags": ["Association"]
+		},
+		"delete": {
+			"operationId": "clearAssociation",
+			"summary": "Clear Commerce Association",
+			"description": "Removes the stored Commerce instance details. Called when the app is unassociated.",
+			"parameters": [{
+				"name": "x-gw-ims-org-id",
+				"in": "header",
+				"description": "Adobe IMS organization ID that identifies the organization for the request.",
+				"required": true,
+				"schema": { "type": "string" }
+			}],
+			"responses": {
+				"204": { "description": "Association data cleared successfully." },
+				"401": { "description": "You are not authorized to access this resource. Ensure the IMS token and the x-gw-ims-org-id header are correctly set and valid." },
+				"403": { "description": "The access token is valid, but it is not allowed to access the requested organization or operation." },
+				"500": {
+					"description": "Internal server error while clearing the association data.",
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+				}
+			},
+			"tags": ["Association"]
+		}
+	}
+};
+var components = {
+	"schemas": {
+		"ErrorResponse": {
+			"type": "object",
+			"properties": {
+				"message": { "type": "string" },
+				"error": { "type": "string" }
+			},
+			"required": ["message"]
+		},
+		"ValidationErrorResponse": {
+			"type": "object",
+			"properties": {
+				"message": { "type": "string" },
+				"issues": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"additionalProperties": true
+					}
+				}
+			},
+			"required": ["message"]
+		},
+		"AppData": {
+			"type": "object",
+			"properties": {
+				"consumerOrgId": {
+					"type": "string",
+					"minLength": 1
+				},
+				"orgName": {
+					"type": "string",
+					"minLength": 1
+				},
+				"projectId": {
+					"type": "string",
+					"minLength": 1
+				},
+				"projectName": {
+					"type": "string",
+					"minLength": 1
+				},
+				"projectTitle": {
+					"type": "string",
+					"minLength": 1
+				},
+				"workspaceId": {
+					"type": "string",
+					"minLength": 1
+				},
+				"workspaceName": {
+					"type": "string",
+					"minLength": 1
+				},
+				"workspaceTitle": {
+					"type": "string",
+					"minLength": 1
+				}
+			},
+			"required": [
+				"consumerOrgId",
+				"orgName",
+				"projectId",
+				"projectName",
+				"projectTitle",
+				"workspaceId",
+				"workspaceName",
+				"workspaceTitle"
+			]
+		},
+		"ConfigScope": {
+			"type": "object",
+			"properties": {
+				"id": { "type": "string" },
+				"code": { "type": "string" },
+				"level": { "type": "string" }
+			},
+			"required": [
+				"id",
+				"code",
+				"level"
+			]
+		},
+		"ConfigOrigin": {
+			"type": "object",
+			"properties": {
+				"code": { "type": "string" },
+				"level": { "type": "string" }
+			},
+			"required": ["code", "level"]
+		},
+		"ConfigValue": {
+			"type": "object",
+			"properties": {
+				"name": { "type": "string" },
+				"value": { "anyOf": [
+					{ "type": "boolean" },
+					{ "type": "string" },
+					{
+						"type": "array",
+						"items": { "type": "string" }
+					}
+				] },
+				"origin": { "$ref": "#/components/schemas/ConfigOrigin" }
+			},
+			"required": [
+				"name",
+				"value",
+				"origin"
+			]
+		},
+		"ConfigUpdateEntry": {
+			"type": "object",
+			"properties": {
+				"name": { "type": "string" },
+				"value": { "anyOf": [
+					{ "type": "boolean" },
+					{ "type": "string" },
+					{
+						"type": "array",
+						"items": { "type": "string" }
+					}
+				] }
+			},
+			"required": ["name", "value"]
+		},
+		"StepMetaInfo": {
+			"type": "object",
+			"properties": {
+				"label": { "type": "string" },
+				"description": { "type": "string" }
+			},
+			"required": ["label"]
+		},
+		"ValidationIssue": {
+			"type": "object",
+			"properties": {
+				"code": { "type": "string" },
+				"message": { "type": "string" },
+				"severity": { "enum": [
+					"error",
+					"warning",
+					"info"
+				] },
+				"details": {
+					"type": "object",
+					"additionalProperties": {},
+					"propertyNames": { "type": "string" }
+				}
+			},
+			"required": [
+				"code",
+				"message",
+				"severity"
+			]
+		},
+		"EventProvider": {
+			"type": "object",
+			"properties": {
+				"label": {
+					"type": "string",
+					"maxLength": 100,
+					"minLength": 1,
+					"pattern": "^[a-zA-Z0-9 _.:()\\-,@/]+$"
+				},
+				"description": {
+					"type": "string",
+					"maxLength": 255,
+					"minLength": 1,
+					"pattern": "^[a-zA-Z0-9 _.:()\\-,@/]+$"
+				},
+				"key": {
+					"type": "string",
+					"maxLength": 50,
+					"pattern": "^[a-zA-Z0-9-]+$"
+				}
+			},
+			"required": ["label", "description"]
+		},
+		"CommerceEventField": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"minLength": 1,
+					"pattern": "^([a-zA-Z0-9_\\-.[\\]]+|\\*)$"
+				},
+				"source": { "type": "string" }
+			},
+			"required": ["name"]
+		},
+		"CommerceEventRule": {
+			"type": "object",
+			"properties": {
+				"field": {
+					"type": "string",
+					"minLength": 1
+				},
+				"operator": { "enum": [
+					"greaterThan",
+					"lessThan",
+					"equal",
+					"regex",
+					"in",
+					"onChange"
+				] },
+				"value": {
+					"type": "string",
+					"minLength": 1
+				}
+			},
+			"required": [
+				"field",
+				"operator",
+				"value"
+			]
+		},
+		"WebhookField": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"minLength": 1
+				},
+				"source": { "type": "string" }
+			},
+			"required": ["name"]
+		},
+		"WebhookRule": {
+			"type": "object",
+			"properties": {
+				"field": {
+					"type": "string",
+					"minLength": 1
+				},
+				"operator": {
+					"type": "string",
+					"minLength": 1
+				},
+				"value": {
+					"type": "string",
+					"minLength": 1
+				}
+			},
+			"required": [
+				"field",
+				"operator",
+				"value"
+			]
+		},
+		"WebhookHeader": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"minLength": 1
+				},
+				"value": {
+					"type": "string",
+					"minLength": 1
+				}
+			},
+			"required": ["name", "value"]
+		},
+		"WebhookDefinition": {
+			"type": "object",
+			"properties": {
+				"webhook_method": {
+					"type": "string",
+					"minLength": 1
+				},
+				"webhook_type": {
+					"type": "string",
+					"enum": ["before", "after"]
+				},
+				"batch_name": {
+					"type": "string",
+					"minLength": 1,
+					"pattern": "^[a-zA-Z0-9_]+$"
+				},
+				"batch_order": {
+					"type": "number",
+					"minimum": 0
+				},
+				"hook_name": {
+					"type": "string",
+					"minLength": 1,
+					"pattern": "^[a-zA-Z0-9_]+$"
+				},
+				"priority": {
+					"type": "number",
+					"minimum": 0
+				},
+				"required": { "type": "boolean" },
+				"soft_timeout": {
+					"type": "number",
+					"minimum": 0
+				},
+				"timeout": {
+					"type": "number",
+					"minimum": 0
+				},
+				"method": {
+					"type": "string",
+					"enum": [
+						"POST",
+						"PUT",
+						"DELETE",
+						"GET"
+					]
+				},
+				"fallback_error_message": { "type": "string" },
+				"ttl": {
+					"type": "number",
+					"minimum": 0
+				},
+				"fields": {
+					"type": "array",
+					"items": { "$ref": "#/components/schemas/WebhookField" }
+				},
+				"rules": {
+					"type": "array",
+					"items": { "$ref": "#/components/schemas/WebhookRule" }
+				},
+				"headers": {
+					"type": "array",
+					"items": { "$ref": "#/components/schemas/WebhookHeader" }
+				}
+			},
+			"required": [
+				"webhook_method",
+				"webhook_type",
+				"batch_name",
+				"hook_name",
+				"method"
+			]
+		},
+		"RuntimeActionWebhookConfig": {
+			"type": "object",
+			"properties": {
+				"label": {
+					"type": "string",
+					"minLength": 1
+				},
+				"description": {
+					"type": "string",
+					"minLength": 1
+				},
+				"category": {
+					"type": "string",
+					"enum": [
+						"validation",
+						"append",
+						"modification"
+					]
+				},
+				"runtimeAction": {
+					"type": "string",
+					"minLength": 1
+				},
+				"requireAdobeAuth": { "type": "boolean" },
+				"webhook": { "allOf": [{ "$ref": "#/components/schemas/WebhookDefinition" }, { "not": {
+					"properties": { "url": {} },
+					"required": ["url"]
+				} }] }
+			},
+			"required": [
+				"label",
+				"description",
+				"runtimeAction",
+				"webhook"
+			]
+		},
+		"ExternalUrlWebhookConfig": {
+			"type": "object",
+			"properties": {
+				"label": {
+					"type": "string",
+					"minLength": 1
+				},
+				"description": {
+					"type": "string",
+					"minLength": 1
+				},
+				"category": {
+					"type": "string",
+					"enum": [
+						"validation",
+						"append",
+						"modification"
+					]
+				},
+				"webhook": { "allOf": [{ "$ref": "#/components/schemas/WebhookDefinition" }, {
+					"properties": { "url": {
+						"type": "string",
+						"format": "uri"
+					} },
+					"required": ["url"]
+				}] }
+			},
+			"not": {
+				"properties": { "runtimeAction": {} },
+				"required": ["runtimeAction"]
+			},
+			"required": [
+				"label",
+				"description",
+				"webhook"
+			]
+		},
+		"LifecycleAttemptStateBase": {
+			"type": "object",
+			"properties": {
+				"id": { "type": "string" },
+				"operation": {
+					"type": "string",
+					"enum": [
+						"install",
+						"upgrade",
+						"uninstall"
+					]
+				},
+				"progress": { "$ref": "#/components/schemas/StepStatus" },
+				"startedAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"executionDeadline": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"data": { "anyOf": [{
+					"type": "object",
+					"propertyNames": { "type": "string" },
+					"additionalProperties": {}
+				}, { "type": "null" }] }
+			},
+			"required": [
+				"id",
+				"operation",
+				"progress",
+				"startedAt",
+				"executionDeadline",
+				"data"
+			]
+		},
+		"LifecycleAttemptState": {
+			"discriminator": {
+				"propertyName": "status",
+				"mapping": {
+					"pending": "#/components/schemas/ActiveLifecycleAttemptState",
+					"in-progress": "#/components/schemas/ActiveLifecycleAttemptState",
+					"succeeded": "#/components/schemas/SucceededLifecycleAttemptState",
+					"failed": "#/components/schemas/FailedLifecycleAttemptState"
+				}
+			},
+			"oneOf": [
+				{ "$ref": "#/components/schemas/ActiveLifecycleAttemptState" },
+				{ "$ref": "#/components/schemas/SucceededLifecycleAttemptState" },
+				{ "$ref": "#/components/schemas/FailedLifecycleAttemptState" }
+			],
+			"title": "LifecycleAttemptState"
+		},
+		"StepStatus": {
+			"type": "object",
+			"properties": {
+				"name": { "type": "string" },
+				"id": { "type": "string" },
+				"path": {
+					"type": "array",
+					"items": { "type": "string" }
+				},
+				"meta": { "$ref": "#/components/schemas/StepMetaInfo" },
+				"status": { "enum": [
+					"pending",
+					"in-progress",
+					"succeeded",
+					"failed"
+				] },
+				"children": {
+					"type": "array",
+					"items": { "$ref": "#/components/schemas/StepStatus" }
+				}
+			},
+			"required": [
+				"name",
+				"id",
+				"path",
+				"meta",
+				"status",
+				"children"
+			],
+			"title": "StepStatus"
+		},
+		"StepValidationResult": {
+			"type": "object",
+			"properties": {
+				"name": { "type": "string" },
+				"path": {
+					"type": "array",
+					"items": { "type": "string" }
+				},
+				"meta": { "$ref": "#/components/schemas/StepMetaInfo" },
+				"issues": {
+					"type": "array",
+					"items": { "$ref": "#/components/schemas/ValidationIssue" }
+				},
+				"children": {
+					"type": "array",
+					"items": { "$ref": "#/components/schemas/StepValidationResult" }
+				}
+			},
+			"required": [
+				"name",
+				"path",
+				"meta",
+				"issues",
+				"children"
+			],
+			"title": "StepValidationResult"
+		},
+		"ScopeNode": {
+			"type": "object",
+			"properties": {
+				"id": { "type": "string" },
+				"code": { "type": "string" },
+				"label": { "type": "string" },
+				"level": { "type": "string" },
+				"is_editable": { "type": "boolean" },
+				"is_final": { "type": "boolean" },
+				"is_removable": { "type": "boolean" },
+				"commerce_id": { "type": "number" },
+				"children": {
+					"type": "array",
+					"items": { "$ref": "#/components/schemas/ScopeNode" }
+				}
+			},
+			"required": [
+				"id",
+				"code",
+				"label",
+				"level",
+				"is_editable",
+				"is_final",
+				"is_removable"
+			],
+			"title": "ScopeNode"
+		},
+		"CustomScopeOutput": {
+			"type": "object",
+			"properties": {
+				"id": { "type": "string" },
+				"code": { "type": "string" },
+				"label": { "type": "string" },
+				"level": { "type": "string" },
+				"is_editable": { "type": "boolean" },
+				"is_final": { "type": "boolean" },
+				"children": {
+					"type": "array",
+					"items": { "$ref": "#/components/schemas/CustomScopeOutput" }
+				}
+			},
+			"required": [
+				"id",
+				"code",
+				"label",
+				"level",
+				"is_editable",
+				"is_final"
+			],
+			"title": "CustomScopeOutput"
+		},
+		"AdminUiMenu": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"minLength": 1,
+					"pattern": "^[A-Za-z0-9_/:]+$"
+				},
+				"label": {
+					"type": "string",
+					"minLength": 1
+				},
+				"description": {
+					"type": "string",
+					"minLength": 1
+				},
+				"pageTitle": {
+					"type": "string",
+					"minLength": 1
+				},
+				"parentMenu": {
+					"type": "string",
+					"enum": [
+						"sales",
+						"catalog",
+						"customers",
+						"marketing",
+						"content",
+						"reports",
+						"stores",
+						"system"
+					]
+				},
+				"sandboxPermissions": { "$ref": "#/components/schemas/AdminUiSandboxPermissions" }
+			},
+			"required": [
+				"id",
+				"label",
+				"description"
+			]
+		},
+		"AdminUiMassAction": { "oneOf": [{
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"minLength": 1
+				},
+				"label": {
+					"type": "string",
+					"minLength": 1
+				},
+				"type": { "const": "view" },
+				"path": {
+					"type": "string",
+					"minLength": 1
+				},
+				"title": {
+					"type": "string",
+					"minLength": 1
+				},
+				"description": {
+					"type": "string",
+					"minLength": 1
+				},
+				"confirm": { "$ref": "#/components/schemas/AdminUiConfirm" },
+				"notifications": { "$ref": "#/components/schemas/AdminUiNotifications" },
+				"selectionLimit": {
+					"type": "number",
+					"minimum": 1
+				},
+				"sandboxPermissions": { "$ref": "#/components/schemas/AdminUiSandboxPermissions" }
+			},
+			"required": [
+				"id",
+				"label",
+				"type",
+				"path"
+			],
+			"additionalProperties": false
+		}, {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"minLength": 1
+				},
+				"label": {
+					"type": "string",
+					"minLength": 1
+				},
+				"type": { "const": "worker" },
+				"runtimeAction": {
+					"type": "string",
+					"minLength": 1
+				},
+				"title": {
+					"type": "string",
+					"minLength": 1
+				},
+				"description": {
+					"type": "string",
+					"minLength": 1
+				},
+				"confirm": { "$ref": "#/components/schemas/AdminUiConfirm" },
+				"notifications": { "$ref": "#/components/schemas/AdminUiNotifications" },
+				"selectionLimit": {
+					"type": "number",
+					"minimum": 1
+				},
+				"timeout": {
+					"type": "number",
+					"minimum": 1
+				}
+			},
+			"required": [
+				"id",
+				"label",
+				"type",
+				"runtimeAction"
+			],
+			"additionalProperties": false
+		}] },
+		"AdminUiConfiguration": {
+			"type": "object",
+			"properties": {
+				"menu": { "$ref": "#/components/schemas/AdminUiMenu" },
+				"order": {
+					"type": "object",
+					"properties": {
+						"massActions": {
+							"type": "array",
+							"items": { "$ref": "#/components/schemas/AdminUiMassAction" }
+						},
+						"gridColumns": { "$ref": "#/components/schemas/AdminUiGridColumns" },
+						"viewButtons": {
+							"type": "array",
+							"items": { "$ref": "#/components/schemas/AdminUiOrderViewButton" }
+						}
+					}
+				},
+				"product": {
+					"type": "object",
+					"properties": {
+						"massActions": {
+							"type": "array",
+							"items": { "$ref": "#/components/schemas/AdminUiMassAction" }
+						},
+						"gridColumns": { "$ref": "#/components/schemas/AdminUiGridColumns" }
+					}
+				},
+				"customer": {
+					"type": "object",
+					"properties": {
+						"massActions": {
+							"type": "array",
+							"items": { "$ref": "#/components/schemas/AdminUiMassAction" }
+						},
+						"gridColumns": { "$ref": "#/components/schemas/AdminUiGridColumns" }
+					}
+				}
+			},
+			"additionalProperties": false,
+			"required": []
+		},
+		"AdminUiGridColumns": {
+			"type": "object",
+			"properties": {
+				"label": {
+					"type": "string",
+					"minLength": 1
+				},
+				"description": {
+					"type": "string",
+					"minLength": 1
+				},
+				"runtimeAction": {
+					"type": "string",
+					"minLength": 1
+				},
+				"columns": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "string",
+								"minLength": 1
+							},
+							"label": {
+								"type": "string",
+								"minLength": 1
+							},
+							"type": {
+								"type": "string",
+								"enum": [
+									"boolean",
+									"date",
+									"datetime",
+									"float",
+									"integer",
+									"string"
+								]
+							},
+							"align": {
+								"type": "string",
+								"enum": [
+									"left",
+									"right",
+									"center"
+								]
+							}
+						},
+						"required": [
+							"id",
+							"label",
+							"type",
+							"align"
+						]
+					},
+					"minItems": 1
+				}
+			},
+			"required": [
+				"label",
+				"description",
+				"runtimeAction",
+				"columns"
+			]
+		},
+		"AdminUiOrderViewButton": {
+			"discriminator": {
+				"propertyName": "type",
+				"mapping": {
+					"view": "#/components/schemas/AdminUiOrderViewNavigationButton",
+					"worker": "#/components/schemas/AdminUiOrderViewWorkerButton"
+				}
+			},
+			"oneOf": [{ "$ref": "#/components/schemas/AdminUiOrderViewNavigationButton" }, { "$ref": "#/components/schemas/AdminUiOrderViewWorkerButton" }]
+		},
+		"AdminUiConfirm": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string",
+					"minLength": 1
+				},
+				"message": {
+					"type": "string",
+					"minLength": 1
+				}
+			}
+		},
+		"AdminUiNotifications": {
+			"type": "object",
+			"properties": {
+				"success": {
+					"type": "string",
+					"minLength": 1
+				},
+				"error": {
+					"type": "string",
+					"minLength": 1
+				}
+			}
+		},
+		"AdminUiSandboxPermissions": {
+			"type": "array",
+			"items": {
+				"type": "string",
+				"enum": [
+					"allow-downloads",
+					"allow-modals",
+					"allow-popups"
+				]
+			},
+			"minItems": 1
+		},
+		"CustomScopeInput": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"pattern": ".*\\S.*"
+				},
+				"code": {
+					"type": "string",
+					"pattern": "^(?!\\s*(?:commerce|global)\\s*$).*\\S.*$"
+				},
+				"label": {
+					"type": "string",
+					"pattern": ".*\\S.*"
+				},
+				"level": {
+					"type": "string",
+					"default": "base",
+					"pattern": ".*\\S.*"
+				},
+				"is_editable": { "type": "boolean" },
+				"is_final": { "type": "boolean" },
+				"children": {
+					"type": "array",
+					"items": { "$ref": "#/components/schemas/CustomScopeInput" }
+				}
+			},
+			"required": [
+				"code",
+				"label",
+				"is_editable",
+				"is_final"
+			],
+			"title": "CustomScopeInput"
+		},
+		"InProgressWorkflowState": {
+			"type": "object",
+			"properties": {
+				"id": { "type": "string" },
+				"status": { "const": "in-progress" },
+				"startedAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"step": { "$ref": "#/components/schemas/StepStatus" },
+				"config": {
+					"description": "The validated app configuration recorded at install time. Present so uninstallation can be sourced from what was actually installed rather than the current request config. Absent on states persisted before this field was introduced.",
+					"type": "object",
+					"additionalProperties": true
+				},
+				"data": { "anyOf": [{
+					"type": "object",
+					"propertyNames": { "type": "string" },
+					"additionalProperties": {}
+				}, { "type": "null" }] }
+			},
+			"not": {
+				"properties": { "operation": {} },
+				"required": ["operation"]
+			},
+			"required": [
+				"id",
+				"status",
+				"startedAt",
+				"step",
+				"data"
+			]
+		},
+		"SucceededWorkflowState": {
+			"type": "object",
+			"properties": {
+				"id": { "type": "string" },
+				"status": { "const": "succeeded" },
+				"startedAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"completedAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"step": { "$ref": "#/components/schemas/StepStatus" },
+				"config": {
+					"description": "The validated app configuration recorded at install time. Present so uninstallation can be sourced from what was actually installed rather than the current request config. Absent on states persisted before this field was introduced.",
+					"type": "object",
+					"additionalProperties": true
+				},
+				"data": { "anyOf": [{
+					"type": "object",
+					"propertyNames": { "type": "string" },
+					"additionalProperties": {}
+				}, { "type": "null" }] },
+				"metadata": {
+					"type": "object",
+					"properties": { "isRetry": { "type": "boolean" } },
+					"required": ["isRetry"]
+				}
+			},
+			"not": {
+				"properties": { "operation": {} },
+				"required": ["operation"]
+			},
+			"required": [
+				"id",
+				"status",
+				"startedAt",
+				"completedAt",
+				"step",
+				"data"
+			]
+		},
+		"FailedWorkflowState": {
+			"type": "object",
+			"properties": {
+				"id": { "type": "string" },
+				"status": { "const": "failed" },
+				"startedAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"completedAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"step": { "$ref": "#/components/schemas/StepStatus" },
+				"config": {
+					"description": "The validated app configuration recorded at install time. Present so uninstallation can be sourced from what was actually installed rather than the current request config. Absent on states persisted before this field was introduced.",
+					"type": "object",
+					"additionalProperties": true
+				},
+				"data": { "anyOf": [{
+					"type": "object",
+					"propertyNames": { "type": "string" },
+					"additionalProperties": {}
+				}, { "type": "null" }] },
+				"error": {
+					"type": "object",
+					"properties": {
+						"path": {
+							"type": "array",
+							"items": { "type": "string" }
+						},
+						"key": { "type": "string" },
+						"message": { "type": "string" },
+						"payload": {}
+					},
+					"required": ["path", "key"]
+				},
+				"metadata": {
+					"type": "object",
+					"properties": { "isRetry": { "type": "boolean" } },
+					"required": ["isRetry"]
+				}
+			},
+			"not": {
+				"properties": { "operation": {} },
+				"required": ["operation"]
+			},
+			"required": [
+				"id",
+				"status",
+				"startedAt",
+				"completedAt",
+				"step",
+				"data",
+				"error"
+			]
+		},
+		"ActiveLifecycleAttemptState": { "allOf": [{ "$ref": "#/components/schemas/LifecycleAttemptStateBase" }, {
+			"type": "object",
+			"properties": { "status": {
+				"type": "string",
+				"enum": ["pending", "in-progress"]
+			} },
+			"required": ["status"]
+		}] },
+		"SucceededLifecycleAttemptState": { "allOf": [{ "$ref": "#/components/schemas/LifecycleAttemptStateBase" }, {
+			"type": "object",
+			"properties": {
+				"status": { "const": "succeeded" },
+				"result": {
+					"type": "object",
+					"properties": {
+						"snapshotId": { "type": "string" },
+						"appVersion": { "type": "string" }
+					},
+					"required": ["snapshotId", "appVersion"]
+				}
+			},
+			"required": ["status", "result"]
+		}] },
+		"FailedLifecycleAttemptState": { "allOf": [{ "$ref": "#/components/schemas/LifecycleAttemptStateBase" }, {
+			"type": "object",
+			"properties": {
+				"status": { "const": "failed" },
+				"failure": {
+					"type": "object",
+					"properties": {
+						"path": {
+							"type": "array",
+							"items": { "type": "string" }
+						},
+						"key": { "type": "string" },
+						"message": { "type": "string" },
+						"payload": {}
+					},
+					"required": ["path", "key"]
+				}
+			},
+			"required": ["status", "failure"]
+		}] },
+		"AdminUiOrderViewNavigationButton": {
+			"type": "object",
+			"properties": {
+				"type": {
+					"type": "string",
+					"const": "view"
+				},
+				"id": {
+					"type": "string",
+					"minLength": 1
+				},
+				"label": {
+					"type": "string",
+					"minLength": 1
+				},
+				"description": {
+					"type": "string",
+					"minLength": 1
+				},
+				"path": {
+					"type": "string",
+					"minLength": 1
+				},
+				"level": {
+					"type": "number",
+					"enum": [
+						-1,
+						0,
+						1
+					]
+				},
+				"sortOrder": {
+					"type": "number",
+					"minimum": 1
+				},
+				"confirm": { "$ref": "#/components/schemas/AdminUiConfirm" },
+				"sandboxPermissions": { "$ref": "#/components/schemas/AdminUiSandboxPermissions" },
+				"notifications": { "$ref": "#/components/schemas/AdminUiNotifications" }
+			},
+			"required": [
+				"type",
+				"id",
+				"label",
+				"path"
+			]
+		},
+		"AdminUiOrderViewWorkerButton": {
+			"type": "object",
+			"properties": {
+				"type": {
+					"type": "string",
+					"const": "worker"
+				},
+				"id": {
+					"type": "string",
+					"minLength": 1
+				},
+				"label": {
+					"type": "string",
+					"minLength": 1
+				},
+				"description": {
+					"type": "string",
+					"minLength": 1
+				},
+				"runtimeAction": {
+					"type": "string",
+					"minLength": 1
+				},
+				"level": {
+					"type": "number",
+					"enum": [
+						-1,
+						0,
+						1
+					]
+				},
+				"sortOrder": {
+					"type": "number",
+					"minimum": 1
+				},
+				"confirm": { "$ref": "#/components/schemas/AdminUiConfirm" },
+				"timeout": {
+					"type": "number",
+					"minimum": 1
+				},
+				"notifications": { "$ref": "#/components/schemas/AdminUiNotifications" }
+			},
+			"required": [
+				"type",
+				"id",
+				"label",
+				"runtimeAction"
+			]
+		}
+	},
+	"securitySchemes": { "imsOAuth": {
+		"type": "oauth2",
+		"description": "Adobe IMS OAuth 2.0 access token. Send it as Authorization: Bearer <IMS access token>.",
+		"flows": { "clientCredentials": {
+			"scopes": {
+				"AdobeID": "Identifies the user with their Adobe ID",
+				"openid": "Authenticates the user via OpenID Connect"
+			},
+			"tokenUrl": "https://ims-na1.adobelogin.com/ims/token/v3"
+		} }
+	} }
+};
+var tags = [
+	{
+		"name": "App Metadata",
+		"description": "Resolve and inspect the Commerce App configuration.",
+		"externalDocs": {
+			"description": "Documentation",
+			"url": "https://developer.adobe.com/commerce/extensibility/app-management/define-app"
+		}
+	},
+	{
+		"name": "Business Configuration",
+		"description": "Manage app configuration values and the Commerce scope tree.",
+		"externalDocs": {
+			"description": "Documentation",
+			"url": "https://developer.adobe.com/commerce/extensibility/app-management/configuration-schema"
+		}
+	},
+	{
+		"name": "Management",
+		"description": "Installation, upgrade, and uninstallation lifecycle.",
+		"externalDocs": {
+			"description": "Documentation",
+			"url": "https://developer.adobe.com/commerce/extensibility/app-management/installation/"
+		}
+	}
+];
+var security = [{ "imsOAuth": ["AdobeID", "openid"] }];
+var openapi_default = {
+	openapi,
+	info,
+	servers,
+	paths,
+	components,
+	tags,
+	security
+};
+
+//#endregion
+
+
+/***/ }
+
+};
+;
