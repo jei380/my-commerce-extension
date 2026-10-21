@@ -209,20 +209,181 @@
   }
 })({"1kTTj":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _slicedToArray = require("@swc/helpers/_/_sliced_to_array");
 var _web = require("@adobe/aio-commerce-lib-admin-ui/web");
+var _react = require("react");
+var _s2 = require("@react-spectrum/s2");
 var _pageCss = require("@react-spectrum/s2/page.css");
 var _appCommerceConfigJs = require("../../../../app.commerce.config.js");
 var _appCommerceConfigJsDefault = parcelHelpers.interopDefault(_appCommerceConfigJs);
 var _mainPageJsx = require("./pages/main-page.jsx");
+var _badgeConfigPageJsx = require("./pages/badge-config-page.jsx");
 var _jsxRuntime = require("react/jsx-runtime");
+function AdminShell() {
+    var _useState = (0, _slicedToArray._)((0, _react.useState)("orders"), 2), activePage = _useState[0], setActivePage = _useState[1];
+    return /*#__PURE__*/ (0, _jsxRuntime.jsxs)("div", {
+        style: {
+            display: "grid",
+            gap: "16px"
+        },
+        children: [
+            /*#__PURE__*/ (0, _jsxRuntime.jsxs)("div", {
+                style: {
+                    display: "flex",
+                    gap: "8px"
+                },
+                children: [
+                    /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Button), {
+                        variant: activePage === "orders" ? "primary" : "secondary",
+                        onPress: function() {
+                            return setActivePage("orders");
+                        },
+                        children: "Order Enrichment"
+                    }),
+                    /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Button), {
+                        variant: activePage === "badges" ? "primary" : "secondary",
+                        onPress: function() {
+                            return setActivePage("badges");
+                        },
+                        children: "Badge Configuration"
+                    })
+                ]
+            }),
+            activePage === "orders" ? /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _mainPageJsx.MainPage), {}) : /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _badgeConfigPageJsx.BadgeConfigPage), {})
+        ]
+    });
+}
 (0, _web.createExtensionApp)({
-    menu: /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _mainPageJsx.MainPage), {}),
+    menu: /*#__PURE__*/ (0, _jsxRuntime.jsx)(AdminShell, {}),
     metadata: {
         extensionId: (0, _appCommerceConfigJsDefault.default).metadata.id
     }
 });
 
-},{"@adobe/aio-commerce-lib-admin-ui/web":"02fWC","@react-spectrum/s2/page.css":"gnUlB","../../../../app.commerce.config.js":"j5741","./pages/main-page.jsx":"ecGmy","react/jsx-runtime":"7CLuA","@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"02fWC":[function(require,module,exports,__globalThis) {
+},{"@swc/helpers/_/_sliced_to_array":"2dwVQ","@adobe/aio-commerce-lib-admin-ui/web":"02fWC","react":"eX4i0","@react-spectrum/s2":"9HdLL","@react-spectrum/s2/page.css":"gnUlB","../../../../app.commerce.config.js":"j5741","./pages/main-page.jsx":"ecGmy","./pages/badge-config-page.jsx":"hbEPa","react/jsx-runtime":"7CLuA","@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"2dwVQ":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "_", function() {
+    return _sliced_to_array;
+});
+var _arrayWithHolesJs = require("./_array_with_holes.js");
+var _iterableToArrayLimitJs = require("./_iterable_to_array_limit.js");
+var _nonIterableRestJs = require("./_non_iterable_rest.js");
+var _unsupportedIterableToArrayJs = require("./_unsupported_iterable_to_array.js");
+function _sliced_to_array(arr, i) {
+    return (0, _arrayWithHolesJs._)(arr) || (0, _iterableToArrayLimitJs._)(arr, i) || (0, _unsupportedIterableToArrayJs._)(arr, i) || (0, _nonIterableRestJs._)();
+}
+
+},{"./_array_with_holes.js":"bNuVS","./_iterable_to_array_limit.js":"aMFV6","./_non_iterable_rest.js":"7pRfz","./_unsupported_iterable_to_array.js":"JgFb2","@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"bNuVS":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "_", function() {
+    return _array_with_holes;
+});
+function _array_with_holes(arr) {
+    if (Array.isArray(arr)) return arr;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"1JSSi":[function(require,module,exports,__globalThis) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function get() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"aMFV6":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "_", function() {
+    return _iterable_to_array_limit;
+});
+function _iterable_to_array_limit(arr, i) {
+    var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+    if (_i == null) return;
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+    var _s, _e;
+    try {
+        for(_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true){
+            _arr.push(_s.value);
+            if (i && _arr.length === i) break;
+        }
+    } catch (err) {
+        _d = true;
+        _e = err;
+    } finally{
+        try {
+            if (!_n && _i["return"] != null) _i["return"]();
+        } finally{
+            if (_d) throw _e;
+        }
+    }
+    return _arr;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"7pRfz":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "_", function() {
+    return _non_iterable_rest;
+});
+function _non_iterable_rest() {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"JgFb2":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "_", function() {
+    return _unsupported_iterable_to_array;
+});
+var _arrayLikeToArrayJs = require("./_array_like_to_array.js");
+function _unsupported_iterable_to_array(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return (0, _arrayLikeToArrayJs._)(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(n);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return (0, _arrayLikeToArrayJs._)(o, minLen);
+}
+
+},{"./_array_like_to_array.js":"1hg89","@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"1hg89":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "_", function() {
+    return _array_like_to_array;
+});
+function _array_like_to_array(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+    for(var i = 0, arr2 = new Array(len); i < len; i++)arr2[i] = arr[i];
+    return arr2;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"02fWC":[function(require,module,exports,__globalThis) {
 /**
  * @license
  *
@@ -1236,37 +1397,7 @@ function _async_to_generator(fn) {
     };
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"1JSSi":[function(require,module,exports,__globalThis) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function get() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"lLgJI":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"lLgJI":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "_", function() {
@@ -1302,99 +1433,6 @@ function _define_property(obj, key, value) {
     });
     else obj[key] = value;
     return obj;
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"2dwVQ":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "_", function() {
-    return _sliced_to_array;
-});
-var _arrayWithHolesJs = require("./_array_with_holes.js");
-var _iterableToArrayLimitJs = require("./_iterable_to_array_limit.js");
-var _nonIterableRestJs = require("./_non_iterable_rest.js");
-var _unsupportedIterableToArrayJs = require("./_unsupported_iterable_to_array.js");
-function _sliced_to_array(arr, i) {
-    return (0, _arrayWithHolesJs._)(arr) || (0, _iterableToArrayLimitJs._)(arr, i) || (0, _unsupportedIterableToArrayJs._)(arr, i) || (0, _nonIterableRestJs._)();
-}
-
-},{"./_array_with_holes.js":"bNuVS","./_iterable_to_array_limit.js":"aMFV6","./_non_iterable_rest.js":"7pRfz","./_unsupported_iterable_to_array.js":"JgFb2","@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"bNuVS":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "_", function() {
-    return _array_with_holes;
-});
-function _array_with_holes(arr) {
-    if (Array.isArray(arr)) return arr;
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"aMFV6":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "_", function() {
-    return _iterable_to_array_limit;
-});
-function _iterable_to_array_limit(arr, i) {
-    var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
-    if (_i == null) return;
-    var _arr = [];
-    var _n = true;
-    var _d = false;
-    var _s, _e;
-    try {
-        for(_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true){
-            _arr.push(_s.value);
-            if (i && _arr.length === i) break;
-        }
-    } catch (err) {
-        _d = true;
-        _e = err;
-    } finally{
-        try {
-            if (!_n && _i["return"] != null) _i["return"]();
-        } finally{
-            if (_d) throw _e;
-        }
-    }
-    return _arr;
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"7pRfz":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "_", function() {
-    return _non_iterable_rest;
-});
-function _non_iterable_rest() {
-    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"JgFb2":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "_", function() {
-    return _unsupported_iterable_to_array;
-});
-var _arrayLikeToArrayJs = require("./_array_like_to_array.js");
-function _unsupported_iterable_to_array(o, minLen) {
-    if (!o) return;
-    if (typeof o === "string") return (0, _arrayLikeToArrayJs._)(o, minLen);
-    var n = Object.prototype.toString.call(o).slice(8, -1);
-    if (n === "Object" && o.constructor) n = o.constructor.name;
-    if (n === "Map" || n === "Set") return Array.from(n);
-    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return (0, _arrayLikeToArrayJs._)(o, minLen);
-}
-
-},{"./_array_like_to_array.js":"1hg89","@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"1hg89":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "_", function() {
-    return _array_like_to_array;
-});
-function _array_like_to_array(arr, len) {
-    if (len == null || len > arr.length) len = arr.length;
-    for(var i = 0, arr2 = new Array(len); i < len; i++)arr2[i] = arr[i];
-    return arr2;
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"gGaC5":[function(require,module,exports,__globalThis) {
@@ -57620,387 +57658,7 @@ function R(r, e) {
     return t.displayName = "withErrorBoundary(".concat(o, ")"), t;
 }
 
-},{"@swc/helpers/_/_call_super":"ll7a6","@swc/helpers/_/_class_call_check":"eRKPL","@swc/helpers/_/_create_class":"6vG2v","@swc/helpers/_/_inherits":"ktyaL","@swc/helpers/_/_object_spread":"lLgJI","@swc/helpers/_/_object_spread_props":"ghIJZ","@swc/helpers/_/_sliced_to_array":"2dwVQ","@swc/helpers/_/_type_of":"4I5XD","react":"eX4i0","@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"gnUlB":[function() {},{}],"j5741":[function(require,module,exports,__globalThis) {
-var defineConfig = require("24237e23bde9da3f").defineConfig;
-module.exports = defineConfig({
-    metadata: {
-        id: "my-commerce-extension",
-        displayName: "My Commerce Extension",
-        version: "1.0.0",
-        description: "A custom Adobe Commerce application. Fill description for your app."
-    },
-    adminUi: {
-        menu: {
-            description: "Displays enriched order data in Commerce Admin.",
-            id: "order_enrichment_admin",
-            label: "Order Enrichment",
-            pageTitle: "Enriched Orders Dashboard - Updated"
-        }
-    },
-    eventing: {}
-});
-
-},{"24237e23bde9da3f":"lH8qS"}],"lH8qS":[function(require,module,exports,__globalThis) {
-/**
- * @license
- *
- * Copyright 2026 Adobe. All rights reserved.
- * This file is licensed to you under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License. You may obtain a copy
- * of the License at http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under
- * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
- * OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
- */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "defineConfig", function() {
-    return 0, _defineZGlf1Mjs.t;
-});
-var _defineZGlf1Mjs = require("../define-Z_Glf1-_.mjs");
-
-},{"../define-Z_Glf1-_.mjs":"bNsE7","@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"bNsE7":[function(require,module,exports,__globalThis) {
-/**
- * @license
- *
- * Copyright 2026 Adobe. All rights reserved.
- * This file is licensed to you under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License. You may obtain a copy
- * of the License at http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under
- * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
- * OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
- */ //#region source/config/lib/define.ts
-/**
-* Helper to type-safely define the app config.
-* @param config - The app config to define.
-*
-* @example
-* ```typescript
-* import { defineConfig } from "@adobe/aio-commerce-lib-app";
-*
-* // In app.commerce.config.js
-* export default defineConfig({
-*   // You get autocompletion and type-safety for the config object.
-*   businessConfig: { ... }
-* });
-*/ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-//#endregion
-parcelHelpers.export(exports, "t", function() {
-    return defineConfig;
-});
-function defineConfig(config) {
-    return config;
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"ecGmy":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/** Dashboard for enriched orders processed by the Commerce event consumer. */ parcelHelpers.export(exports, "MainPage", function() {
-    return MainPage;
-});
-var _asyncToGenerator = require("@swc/helpers/_/_async_to_generator");
-var _slicedToArray = require("@swc/helpers/_/_sliced_to_array");
-var _tsGenerator = require("@swc/helpers/_/_ts_generator");
-var _react = require("react");
-var _s2 = require("@react-spectrum/s2");
-var _jsxRuntime = require("react/jsx-runtime");
-var ACTION_URL = "https://3967933-237champagnecicada-stage.adobeioruntime.net/api/v1/web/course-labs/get-enriched-orders";
-var numberFormatter = new Intl.NumberFormat("en-US");
-var currencyFormatter = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD"
-});
-function formatCurrency(value) {
-    var currency = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : "USD";
-    var amount = Number(value);
-    if (!Number.isFinite(amount)) return "\u2014";
-    if (currency === "USD") return currencyFormatter.format(amount);
-    try {
-        return new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: currency
-        }).format(amount);
-    } catch (e) {
-        return "".concat(currency, " ").concat(amount.toFixed(2));
-    }
-}
-function formatProcessedAt(value) {
-    if (!value) return "\u2014";
-    var date = new Date(value);
-    return Number.isNaN(date.getTime()) ? "\u2014" : date.toLocaleString();
-}
-function getErrorMessage(error) {
-    return error instanceof Error ? error.message : String(error);
-}
-function MainPage() {
-    var _useState = (0, _slicedToArray._)((0, _react.useState)([]), 2), orders = _useState[0], setOrders = _useState[1];
-    var _useState1 = (0, _slicedToArray._)((0, _react.useState)(null), 2), summary = _useState1[0], setSummary = _useState1[1];
-    var _useState2 = (0, _slicedToArray._)((0, _react.useState)(null), 2), error = _useState2[0], setError = _useState2[1];
-    var _useState3 = (0, _slicedToArray._)((0, _react.useState)(true), 2), loading = _useState3[0], setLoading = _useState3[1];
-    var _useState4 = (0, _slicedToArray._)((0, _react.useState)(0), 2), requestVersion = _useState4[0], setRequestVersion = _useState4[1];
-    (0, _react.useEffect)(function() {
-        var controller = new AbortController();
-        function loadDashboard() {
-            return (/*#__PURE__*/ 0, /*#__PURE__*/ _asyncToGenerator._)(function() {
-                var response, data, loadError;
-                return (0, _tsGenerator._)(this, function(_state) {
-                    switch(_state.label){
-                        case 0:
-                            setLoading(true);
-                            setError(null);
-                            _state.label = 1;
-                        case 1:
-                            _state.trys.push([
-                                1,
-                                4,
-                                5,
-                                6
-                            ]);
-                            return [
-                                4,
-                                fetch(ACTION_URL, {
-                                    headers: {
-                                        Accept: "application/json"
-                                    },
-                                    signal: controller.signal
-                                })
-                            ];
-                        case 2:
-                            response = _state.sent();
-                            return [
-                                4,
-                                response.json()
-                            ];
-                        case 3:
-                            data = _state.sent();
-                            if (!response.ok) throw new Error((data === null || data === void 0 ? void 0 : data.error) || "API returned ".concat(response.status));
-                            if (!data || !Array.isArray(data.orders) || !data.summary) throw new Error("The Runtime action returned an unexpected response.");
-                            setOrders(data.orders);
-                            setSummary(data.summary);
-                            return [
-                                3,
-                                6
-                            ];
-                        case 4:
-                            loadError = _state.sent();
-                            if (!controller.signal.aborted) setError(getErrorMessage(loadError));
-                            return [
-                                3,
-                                6
-                            ];
-                        case 5:
-                            if (!controller.signal.aborted) setLoading(false);
-                            return [
-                                7
-                            ];
-                        case 6:
-                            return [
-                                2
-                            ];
-                    }
-                });
-            })();
-        }
-        loadDashboard();
-        return function() {
-            return controller.abort();
-        };
-    }, [
-        requestVersion
-    ]);
-    return /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Provider), {
-        colorScheme: "light",
-        background: "base",
-        children: /*#__PURE__*/ (0, _jsxRuntime.jsxs)("main", {
-            className: "dashboard",
-            children: [
-                /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Heading), {
-                    level: 1,
-                    children: "Enriched Orders Dashboard"
-                }),
-                loading ? /*#__PURE__*/ (0, _jsxRuntime.jsxs)("div", {
-                    className: "dashboard-loading",
-                    role: "status",
-                    children: [
-                        /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.ProgressCircle), {
-                            "aria-label": "Loading dashboard data",
-                            isIndeterminate: true
-                        }),
-                        /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
-                            children: "Loading dashboard data..."
-                        })
-                    ]
-                }) : error ? /*#__PURE__*/ (0, _jsxRuntime.jsxs)("div", {
-                    className: "dashboard-error",
-                    children: [
-                        /*#__PURE__*/ (0, _jsxRuntime.jsxs)((0, _s2.InlineAlert), {
-                            variant: "negative",
-                            children: [
-                                /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Heading), {
-                                    level: 2,
-                                    children: "Unable to load enriched orders"
-                                }),
-                                /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
-                                    children: error
-                                })
-                            ]
-                        }),
-                        /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Button), {
-                            onPress: function() {
-                                return setRequestVersion(function(version) {
-                                    return version + 1;
-                                });
-                            },
-                            children: "Try again"
-                        })
-                    ]
-                }) : /*#__PURE__*/ (0, _jsxRuntime.jsxs)((0, _jsxRuntime.Fragment), {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxRuntime.jsxs)("section", {
-                            "aria-label": "Order summary",
-                            className: "dashboard-metrics",
-                            children: [
-                                /*#__PURE__*/ (0, _jsxRuntime.jsxs)((0, _s2.Card), {
-                                    variant: "secondary",
-                                    children: [
-                                        /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Heading), {
-                                            level: 3,
-                                            children: "Total Orders"
-                                        }),
-                                        /*#__PURE__*/ (0, _jsxRuntime.jsx)("div", {
-                                            className: "dashboard-metric-value",
-                                            children: /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
-                                                children: numberFormatter.format(Number(summary.totalOrders) || 0)
-                                            })
-                                        })
-                                    ]
-                                }),
-                                /*#__PURE__*/ (0, _jsxRuntime.jsxs)((0, _s2.Card), {
-                                    variant: "secondary",
-                                    children: [
-                                        /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Heading), {
-                                            level: 3,
-                                            children: "Total Revenue"
-                                        }),
-                                        /*#__PURE__*/ (0, _jsxRuntime.jsx)("div", {
-                                            className: "dashboard-metric-value",
-                                            children: /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
-                                                children: formatCurrency(summary.totalRevenue)
-                                            })
-                                        })
-                                    ]
-                                }),
-                                /*#__PURE__*/ (0, _jsxRuntime.jsxs)((0, _s2.Card), {
-                                    variant: "secondary",
-                                    children: [
-                                        /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Heading), {
-                                            level: 3,
-                                            children: "High Value Orders"
-                                        }),
-                                        /*#__PURE__*/ (0, _jsxRuntime.jsx)("div", {
-                                            className: "dashboard-metric-value",
-                                            children: /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
-                                                children: numberFormatter.format(Number(summary.highValueCount) || 0)
-                                            })
-                                        })
-                                    ]
-                                })
-                            ]
-                        }),
-                        /*#__PURE__*/ (0, _jsxRuntime.jsxs)("section", {
-                            "aria-labelledby": "processed-orders-heading",
-                            children: [
-                                /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Heading), {
-                                    id: "processed-orders-heading",
-                                    level: 2,
-                                    children: "Processed Orders"
-                                }),
-                                orders.length === 0 ? /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.InlineAlert), {
-                                    variant: "informative",
-                                    children: /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
-                                        children: "No enriched orders yet. Create orders in Commerce to generate event data."
-                                    })
-                                }) : /*#__PURE__*/ (0, _jsxRuntime.jsx)("div", {
-                                    className: "dashboard-table",
-                                    children: /*#__PURE__*/ (0, _jsxRuntime.jsxs)((0, _s2.TableView), {
-                                        "aria-label": "Enriched orders",
-                                        selectionMode: "none",
-                                        density: "compact",
-                                        children: [
-                                            /*#__PURE__*/ (0, _jsxRuntime.jsxs)((0, _s2.TableHeader), {
-                                                children: [
-                                                    /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Column), {
-                                                        isRowHeader: true,
-                                                        children: "Order #"
-                                                    }),
-                                                    /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Column), {
-                                                        children: "Status"
-                                                    }),
-                                                    /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Column), {
-                                                        align: "end",
-                                                        children: "Total"
-                                                    }),
-                                                    /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Column), {
-                                                        children: "Tier"
-                                                    }),
-                                                    /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Column), {
-                                                        align: "end",
-                                                        children: "Items"
-                                                    }),
-                                                    /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Column), {
-                                                        children: "Processed"
-                                                    })
-                                                ]
-                                            }),
-                                            /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.TableBody), {
-                                                children: orders.map(function(order, index) {
-                                                    var _order_enrichment, _order_enrichment_itemSummary, _order_enrichment1;
-                                                    var _order_orderId;
-                                                    var orderId = (_order_orderId = order.orderId) !== null && _order_orderId !== void 0 ? _order_orderId : order.incrementId;
-                                                    var _order_enrichment_itemSummary_length, _ref;
-                                                    return /*#__PURE__*/ (0, _jsxRuntime.jsxs)((0, _s2.Row), {
-                                                        id: "".concat(orderId !== null && orderId !== void 0 ? orderId : "order", "-").concat(index),
-                                                        children: [
-                                                            /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Cell), {
-                                                                children: order.incrementId || order.orderId || "\u2014"
-                                                            }),
-                                                            /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Cell), {
-                                                                children: order.status || "\u2014"
-                                                            }),
-                                                            /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Cell), {
-                                                                children: formatCurrency(order.grandTotal, order.currency || "USD")
-                                                            }),
-                                                            /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Cell), {
-                                                                children: ((_order_enrichment = order.enrichment) === null || _order_enrichment === void 0 ? void 0 : _order_enrichment.orderTier) || "\u2014"
-                                                            }),
-                                                            /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Cell), {
-                                                                children: numberFormatter.format(Number((_ref = (_order_enrichment_itemSummary_length = (_order_enrichment1 = order.enrichment) === null || _order_enrichment1 === void 0 ? void 0 : (_order_enrichment_itemSummary = _order_enrichment1.itemSummary) === null || _order_enrichment_itemSummary === void 0 ? void 0 : _order_enrichment_itemSummary.length) !== null && _order_enrichment_itemSummary_length !== void 0 ? _order_enrichment_itemSummary_length : order.itemCount) !== null && _ref !== void 0 ? _ref : 0) || 0)
-                                                            }),
-                                                            /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Cell), {
-                                                                children: formatProcessedAt(order.processedAt)
-                                                            })
-                                                        ]
-                                                    }, "".concat(orderId !== null && orderId !== void 0 ? orderId : "order", "-").concat(index));
-                                                })
-                                            })
-                                        ]
-                                    })
-                                })
-                            ]
-                        })
-                    ]
-                })
-            ]
-        })
-    });
-}
-
-},{"@swc/helpers/_/_async_to_generator":"1wSDg","@swc/helpers/_/_sliced_to_array":"2dwVQ","@swc/helpers/_/_ts_generator":"9eIyW","react":"eX4i0","@react-spectrum/s2":"9HdLL","react/jsx-runtime":"7CLuA","@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"9HdLL":[function(require,module,exports,__globalThis) {
+},{"@swc/helpers/_/_call_super":"ll7a6","@swc/helpers/_/_class_call_check":"eRKPL","@swc/helpers/_/_create_class":"6vG2v","@swc/helpers/_/_inherits":"ktyaL","@swc/helpers/_/_object_spread":"lLgJI","@swc/helpers/_/_object_spread_props":"ghIJZ","@swc/helpers/_/_sliced_to_array":"2dwVQ","@swc/helpers/_/_type_of":"4I5XD","react":"eX4i0","@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"9HdLL":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /*
@@ -86390,6 +86048,814 @@ parcelHelpers.export(exports, "isShadowRoot", function() {
 });
 var _domHelpersMjs = require("../../../private/utils/domHelpers.mjs");
 
-},{"../../../private/utils/domHelpers.mjs":"6xuBH","@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}]},["1kTTj"], "1kTTj", "parcelRequirec253", {})
+},{"../../../private/utils/domHelpers.mjs":"6xuBH","@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"gnUlB":[function() {},{}],"j5741":[function(require,module,exports,__globalThis) {
+var defineConfig = require("24237e23bde9da3f").defineConfig;
+module.exports = defineConfig({
+    metadata: {
+        id: "my-commerce-extension",
+        displayName: "My Commerce Extension",
+        version: "1.0.0",
+        description: "A custom Adobe Commerce application. Fill description for your app."
+    },
+    adminUi: {
+        menu: {
+            description: "Displays enriched order data in Commerce Admin.",
+            id: "order_enrichment_admin",
+            label: "Order Enrichment",
+            pageTitle: "Enriched Orders Dashboard"
+        }
+    },
+    eventing: {}
+});
 
-//# sourceMappingURL=web-src.117e6264.js.map
+},{"24237e23bde9da3f":"lH8qS"}],"lH8qS":[function(require,module,exports,__globalThis) {
+/**
+ * @license
+ *
+ * Copyright 2026 Adobe. All rights reserved.
+ * This file is licensed to you under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License. You may obtain a copy
+ * of the License at http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+ * OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "defineConfig", function() {
+    return 0, _defineZGlf1Mjs.t;
+});
+var _defineZGlf1Mjs = require("../define-Z_Glf1-_.mjs");
+
+},{"../define-Z_Glf1-_.mjs":"bNsE7","@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"bNsE7":[function(require,module,exports,__globalThis) {
+/**
+ * @license
+ *
+ * Copyright 2026 Adobe. All rights reserved.
+ * This file is licensed to you under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License. You may obtain a copy
+ * of the License at http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+ * OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ */ //#region source/config/lib/define.ts
+/**
+* Helper to type-safely define the app config.
+* @param config - The app config to define.
+*
+* @example
+* ```typescript
+* import { defineConfig } from "@adobe/aio-commerce-lib-app";
+*
+* // In app.commerce.config.js
+* export default defineConfig({
+*   // You get autocompletion and type-safety for the config object.
+*   businessConfig: { ... }
+* });
+*/ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+//#endregion
+parcelHelpers.export(exports, "t", function() {
+    return defineConfig;
+});
+function defineConfig(config) {
+    return config;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"ecGmy":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/** Dashboard for enriched orders processed by the Commerce event consumer. */ parcelHelpers.export(exports, "MainPage", function() {
+    return MainPage;
+});
+var _asyncToGenerator = require("@swc/helpers/_/_async_to_generator");
+var _slicedToArray = require("@swc/helpers/_/_sliced_to_array");
+var _tsGenerator = require("@swc/helpers/_/_ts_generator");
+var _react = require("react");
+var _s2 = require("@react-spectrum/s2");
+var _jsxRuntime = require("react/jsx-runtime");
+var ACTION_URL = "https://3967933-237champagnecicada-stage.adobeioruntime.net/api/v1/web/course-labs/get-enriched-orders";
+var numberFormatter = new Intl.NumberFormat("en-US");
+var currencyFormatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD"
+});
+function formatCurrency(value) {
+    var currency = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : "USD";
+    var amount = Number(value);
+    if (!Number.isFinite(amount)) return "\u2014";
+    if (currency === "USD") return currencyFormatter.format(amount);
+    try {
+        return new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: currency
+        }).format(amount);
+    } catch (e) {
+        return "".concat(currency, " ").concat(amount.toFixed(2));
+    }
+}
+function formatProcessedAt(value) {
+    if (!value) return "\u2014";
+    var date = new Date(value);
+    return Number.isNaN(date.getTime()) ? "\u2014" : date.toLocaleString();
+}
+function getErrorMessage(error) {
+    return error instanceof Error ? error.message : String(error);
+}
+function MainPage() {
+    var _useState = (0, _slicedToArray._)((0, _react.useState)([]), 2), orders = _useState[0], setOrders = _useState[1];
+    var _useState1 = (0, _slicedToArray._)((0, _react.useState)(null), 2), summary = _useState1[0], setSummary = _useState1[1];
+    var _useState2 = (0, _slicedToArray._)((0, _react.useState)(null), 2), error = _useState2[0], setError = _useState2[1];
+    var _useState3 = (0, _slicedToArray._)((0, _react.useState)(true), 2), loading = _useState3[0], setLoading = _useState3[1];
+    var _useState4 = (0, _slicedToArray._)((0, _react.useState)(0), 2), requestVersion = _useState4[0], setRequestVersion = _useState4[1];
+    (0, _react.useEffect)(function() {
+        var controller = new AbortController();
+        function loadDashboard() {
+            return (/*#__PURE__*/ 0, /*#__PURE__*/ _asyncToGenerator._)(function() {
+                var response, data, loadError;
+                return (0, _tsGenerator._)(this, function(_state) {
+                    switch(_state.label){
+                        case 0:
+                            setLoading(true);
+                            setError(null);
+                            _state.label = 1;
+                        case 1:
+                            _state.trys.push([
+                                1,
+                                4,
+                                5,
+                                6
+                            ]);
+                            return [
+                                4,
+                                fetch(ACTION_URL, {
+                                    headers: {
+                                        Accept: "application/json"
+                                    },
+                                    signal: controller.signal
+                                })
+                            ];
+                        case 2:
+                            response = _state.sent();
+                            return [
+                                4,
+                                response.json()
+                            ];
+                        case 3:
+                            data = _state.sent();
+                            if (!response.ok) throw new Error((data === null || data === void 0 ? void 0 : data.error) || "API returned ".concat(response.status));
+                            if (!data || !Array.isArray(data.orders) || !data.summary) throw new Error("The Runtime action returned an unexpected response.");
+                            setOrders(data.orders);
+                            setSummary(data.summary);
+                            return [
+                                3,
+                                6
+                            ];
+                        case 4:
+                            loadError = _state.sent();
+                            if (!controller.signal.aborted) setError(getErrorMessage(loadError));
+                            return [
+                                3,
+                                6
+                            ];
+                        case 5:
+                            if (!controller.signal.aborted) setLoading(false);
+                            return [
+                                7
+                            ];
+                        case 6:
+                            return [
+                                2
+                            ];
+                    }
+                });
+            })();
+        }
+        loadDashboard();
+        return function() {
+            return controller.abort();
+        };
+    }, [
+        requestVersion
+    ]);
+    return /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Provider), {
+        colorScheme: "light",
+        background: "base",
+        children: /*#__PURE__*/ (0, _jsxRuntime.jsxs)("main", {
+            className: "dashboard",
+            children: [
+                /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Heading), {
+                    level: 1,
+                    children: "Enriched Orders Dashboard"
+                }),
+                loading ? /*#__PURE__*/ (0, _jsxRuntime.jsxs)("div", {
+                    className: "dashboard-loading",
+                    role: "status",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.ProgressCircle), {
+                            "aria-label": "Loading dashboard data",
+                            isIndeterminate: true
+                        }),
+                        /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
+                            children: "Loading dashboard data..."
+                        })
+                    ]
+                }) : error ? /*#__PURE__*/ (0, _jsxRuntime.jsxs)("div", {
+                    className: "dashboard-error",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxRuntime.jsxs)((0, _s2.InlineAlert), {
+                            variant: "negative",
+                            children: [
+                                /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Heading), {
+                                    level: 2,
+                                    children: "Unable to load enriched orders"
+                                }),
+                                /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
+                                    children: error
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Button), {
+                            onPress: function() {
+                                return setRequestVersion(function(version) {
+                                    return version + 1;
+                                });
+                            },
+                            children: "Try again"
+                        })
+                    ]
+                }) : /*#__PURE__*/ (0, _jsxRuntime.jsxs)((0, _jsxRuntime.Fragment), {
+                    children: [
+                        /*#__PURE__*/ (0, _jsxRuntime.jsxs)("section", {
+                            "aria-label": "Order summary",
+                            className: "dashboard-metrics",
+                            children: [
+                                /*#__PURE__*/ (0, _jsxRuntime.jsxs)((0, _s2.Card), {
+                                    variant: "secondary",
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Heading), {
+                                            level: 3,
+                                            children: "Total Orders"
+                                        }),
+                                        /*#__PURE__*/ (0, _jsxRuntime.jsx)("div", {
+                                            className: "dashboard-metric-value",
+                                            children: /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
+                                                children: numberFormatter.format(Number(summary.totalOrders) || 0)
+                                            })
+                                        })
+                                    ]
+                                }),
+                                /*#__PURE__*/ (0, _jsxRuntime.jsxs)((0, _s2.Card), {
+                                    variant: "secondary",
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Heading), {
+                                            level: 3,
+                                            children: "Total Revenue"
+                                        }),
+                                        /*#__PURE__*/ (0, _jsxRuntime.jsx)("div", {
+                                            className: "dashboard-metric-value",
+                                            children: /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
+                                                children: formatCurrency(summary.totalRevenue)
+                                            })
+                                        })
+                                    ]
+                                }),
+                                /*#__PURE__*/ (0, _jsxRuntime.jsxs)((0, _s2.Card), {
+                                    variant: "secondary",
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Heading), {
+                                            level: 3,
+                                            children: "High Value Orders"
+                                        }),
+                                        /*#__PURE__*/ (0, _jsxRuntime.jsx)("div", {
+                                            className: "dashboard-metric-value",
+                                            children: /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
+                                                children: numberFormatter.format(Number(summary.highValueCount) || 0)
+                                            })
+                                        })
+                                    ]
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ (0, _jsxRuntime.jsxs)("section", {
+                            "aria-labelledby": "processed-orders-heading",
+                            children: [
+                                /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Heading), {
+                                    id: "processed-orders-heading",
+                                    level: 2,
+                                    children: "Processed Orders"
+                                }),
+                                orders.length === 0 ? /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.InlineAlert), {
+                                    variant: "informative",
+                                    children: /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
+                                        children: "No enriched orders yet. Create orders in Commerce to generate event data."
+                                    })
+                                }) : /*#__PURE__*/ (0, _jsxRuntime.jsx)("div", {
+                                    className: "dashboard-table",
+                                    children: /*#__PURE__*/ (0, _jsxRuntime.jsxs)((0, _s2.TableView), {
+                                        "aria-label": "Enriched orders",
+                                        selectionMode: "none",
+                                        density: "compact",
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxRuntime.jsxs)((0, _s2.TableHeader), {
+                                                children: [
+                                                    /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Column), {
+                                                        isRowHeader: true,
+                                                        children: "Order #"
+                                                    }),
+                                                    /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Column), {
+                                                        children: "Status"
+                                                    }),
+                                                    /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Column), {
+                                                        align: "end",
+                                                        children: "Total"
+                                                    }),
+                                                    /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Column), {
+                                                        children: "Tier"
+                                                    }),
+                                                    /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Column), {
+                                                        align: "end",
+                                                        children: "Items"
+                                                    }),
+                                                    /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Column), {
+                                                        children: "Processed"
+                                                    })
+                                                ]
+                                            }),
+                                            /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.TableBody), {
+                                                children: orders.map(function(order, index) {
+                                                    var _order_enrichment, _order_enrichment_itemSummary, _order_enrichment1;
+                                                    var _order_orderId;
+                                                    var orderId = (_order_orderId = order.orderId) !== null && _order_orderId !== void 0 ? _order_orderId : order.incrementId;
+                                                    var _order_enrichment_itemSummary_length, _ref;
+                                                    return /*#__PURE__*/ (0, _jsxRuntime.jsxs)((0, _s2.Row), {
+                                                        id: "".concat(orderId !== null && orderId !== void 0 ? orderId : "order", "-").concat(index),
+                                                        children: [
+                                                            /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Cell), {
+                                                                children: order.incrementId || order.orderId || "\u2014"
+                                                            }),
+                                                            /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Cell), {
+                                                                children: order.status || "\u2014"
+                                                            }),
+                                                            /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Cell), {
+                                                                children: formatCurrency(order.grandTotal, order.currency || "USD")
+                                                            }),
+                                                            /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Cell), {
+                                                                children: ((_order_enrichment = order.enrichment) === null || _order_enrichment === void 0 ? void 0 : _order_enrichment.orderTier) || "\u2014"
+                                                            }),
+                                                            /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Cell), {
+                                                                children: numberFormatter.format(Number((_ref = (_order_enrichment_itemSummary_length = (_order_enrichment1 = order.enrichment) === null || _order_enrichment1 === void 0 ? void 0 : (_order_enrichment_itemSummary = _order_enrichment1.itemSummary) === null || _order_enrichment_itemSummary === void 0 ? void 0 : _order_enrichment_itemSummary.length) !== null && _order_enrichment_itemSummary_length !== void 0 ? _order_enrichment_itemSummary_length : order.itemCount) !== null && _ref !== void 0 ? _ref : 0) || 0)
+                                                            }),
+                                                            /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Cell), {
+                                                                children: formatProcessedAt(order.processedAt)
+                                                            })
+                                                        ]
+                                                    }, "".concat(orderId !== null && orderId !== void 0 ? orderId : "order", "-").concat(index));
+                                                })
+                                            })
+                                        ]
+                                    })
+                                })
+                            ]
+                        })
+                    ]
+                })
+            ]
+        })
+    });
+}
+
+},{"@swc/helpers/_/_async_to_generator":"1wSDg","@swc/helpers/_/_sliced_to_array":"2dwVQ","@swc/helpers/_/_ts_generator":"9eIyW","react":"eX4i0","@react-spectrum/s2":"9HdLL","react/jsx-runtime":"7CLuA","@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"hbEPa":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/** Configuration page for badge thresholds and texts. */ parcelHelpers.export(exports, "BadgeConfigPage", function() {
+    return BadgeConfigPage;
+});
+var _asyncToGenerator = require("@swc/helpers/_/_async_to_generator");
+var _defineProperty = require("@swc/helpers/_/_define_property");
+var _objectSpread = require("@swc/helpers/_/_object_spread");
+var _objectSpreadProps = require("@swc/helpers/_/_object_spread_props");
+var _slicedToArray = require("@swc/helpers/_/_sliced_to_array");
+var _tsGenerator = require("@swc/helpers/_/_ts_generator");
+var _react = require("react");
+var _s2 = require("@react-spectrum/s2");
+var _jsxRuntime = require("react/jsx-runtime");
+var ACTION_URL = "https://3967933-237champagnecicada-stage.adobeioruntime.net/api/v1/web/course-labs/badge-config";
+var EMPTY_TIERS = [
+    {
+        percentage: "",
+        badgeText: ""
+    },
+    {
+        percentage: "",
+        badgeText: ""
+    },
+    {
+        percentage: "",
+        badgeText: ""
+    }
+];
+function getErrorMessage(error) {
+    return error instanceof Error ? error.message : String(error);
+}
+function normalizeTiers() {
+    var tiers = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : [];
+    return [
+        0,
+        1,
+        2
+    ].map(function(index) {
+        var _tiers_index, _tiers_index1;
+        var _tiers_index_percentage, _tiers_index_badgeText;
+        return {
+            percentage: String((_tiers_index_percentage = (_tiers_index = tiers[index]) === null || _tiers_index === void 0 ? void 0 : _tiers_index.percentage) !== null && _tiers_index_percentage !== void 0 ? _tiers_index_percentage : ""),
+            badgeText: String((_tiers_index_badgeText = (_tiers_index1 = tiers[index]) === null || _tiers_index1 === void 0 ? void 0 : _tiers_index1.badgeText) !== null && _tiers_index_badgeText !== void 0 ? _tiers_index_badgeText : "")
+        };
+    });
+}
+function validateTiers(tiers) {
+    var errors = [];
+    var parsed = tiers.map(function(tier, index) {
+        var row = index + 1;
+        var percentage = Number(tier.percentage);
+        var badgeText = tier.badgeText.trim();
+        if (!Number.isFinite(percentage)) errors.push("Tier ".concat(row, ": percentage must be a number."));
+        else if (percentage <= 0 || percentage > 100) errors.push("Tier ".concat(row, ": percentage must be between 1 and 100."));
+        if (!badgeText) errors.push("Tier ".concat(row, ": badge text is required."));
+        return {
+            percentage: percentage,
+            badgeText: badgeText
+        };
+    });
+    var percentages = parsed.map(function(tier) {
+        return tier.percentage;
+    });
+    var uniquePercentages = new Set(percentages);
+    if (uniquePercentages.size !== percentages.length) errors.push("Percentages must be unique.");
+    for(var index = 1; index < percentages.length; index += 1)if (percentages[index] <= percentages[index - 1]) {
+        errors.push("Percentages must be in strictly ascending order.");
+        break;
+    }
+    return {
+        parsed: parsed,
+        errors: errors
+    };
+}
+function BadgeConfigPage() {
+    var _useState = (0, _slicedToArray._)((0, _react.useState)(EMPTY_TIERS), 2), tiers = _useState[0], setTiers = _useState[1];
+    var _useState1 = (0, _slicedToArray._)((0, _react.useState)(null), 2), updatedAt = _useState1[0], setUpdatedAt = _useState1[1];
+    var _useState2 = (0, _slicedToArray._)((0, _react.useState)("default"), 2), source = _useState2[0], setSource = _useState2[1];
+    var _useState3 = (0, _slicedToArray._)((0, _react.useState)(null), 2), error = _useState3[0], setError = _useState3[1];
+    var _useState4 = (0, _slicedToArray._)((0, _react.useState)(null), 2), success = _useState4[0], setSuccess = _useState4[1];
+    var _useState5 = (0, _slicedToArray._)((0, _react.useState)(true), 2), loading = _useState5[0], setLoading = _useState5[1];
+    var _useState6 = (0, _slicedToArray._)((0, _react.useState)(false), 2), saving = _useState6[0], setSaving = _useState6[1];
+    var _useState7 = (0, _slicedToArray._)((0, _react.useState)(1), 2), requestVersion = _useState7[0], setRequestVersion = _useState7[1];
+    (0, _react.useEffect)(function() {
+        var controller = new AbortController();
+        function loadConfig() {
+            return (/*#__PURE__*/ 0, /*#__PURE__*/ _asyncToGenerator._)(function() {
+                var response, data, loadError;
+                return (0, _tsGenerator._)(this, function(_state) {
+                    switch(_state.label){
+                        case 0:
+                            setLoading(true);
+                            setError(null);
+                            setSuccess(null);
+                            _state.label = 1;
+                        case 1:
+                            _state.trys.push([
+                                1,
+                                4,
+                                5,
+                                6
+                            ]);
+                            return [
+                                4,
+                                fetch(ACTION_URL, {
+                                    headers: {
+                                        Accept: "application/json"
+                                    },
+                                    signal: controller.signal
+                                })
+                            ];
+                        case 2:
+                            response = _state.sent();
+                            return [
+                                4,
+                                response.json()
+                            ];
+                        case 3:
+                            data = _state.sent();
+                            if (!response.ok) throw new Error((data === null || data === void 0 ? void 0 : data.error) || "API returned ".concat(response.status));
+                            if (!data || !Array.isArray(data.tiers)) throw new Error("The Runtime action returned an unexpected response.");
+                            setTiers(normalizeTiers(data.tiers));
+                            setUpdatedAt(data.updatedAt || null);
+                            setSource(data.source || "state");
+                            return [
+                                3,
+                                6
+                            ];
+                        case 4:
+                            loadError = _state.sent();
+                            if (!controller.signal.aborted) setError(getErrorMessage(loadError));
+                            return [
+                                3,
+                                6
+                            ];
+                        case 5:
+                            if (!controller.signal.aborted) setLoading(false);
+                            return [
+                                7
+                            ];
+                        case 6:
+                            return [
+                                2
+                            ];
+                    }
+                });
+            })();
+        }
+        loadConfig();
+        return function() {
+            return controller.abort();
+        };
+    }, [
+        requestVersion
+    ]);
+    function updateTier(index, key, value) {
+        setTiers(function(previous) {
+            return previous.map(function(tier, tierIndex) {
+                return tierIndex === index ? (0, _objectSpreadProps._)((0, _objectSpread._)({}, tier), (0, _defineProperty._)({}, key, value)) : tier;
+            });
+        });
+    }
+    function saveConfig() {
+        return (/*#__PURE__*/ 0, /*#__PURE__*/ _asyncToGenerator._)(function() {
+            var _validateTiers, parsed, errors, response, data, validationDetails, saveError;
+            return (0, _tsGenerator._)(this, function(_state) {
+                switch(_state.label){
+                    case 0:
+                        setError(null);
+                        setSuccess(null);
+                        _validateTiers = validateTiers(tiers), parsed = _validateTiers.parsed, errors = _validateTiers.errors;
+                        if (errors.length > 0) {
+                            setError(errors.join(" "));
+                            return [
+                                2
+                            ];
+                        }
+                        setSaving(true);
+                        _state.label = 1;
+                    case 1:
+                        _state.trys.push([
+                            1,
+                            4,
+                            5,
+                            6
+                        ]);
+                        return [
+                            4,
+                            fetch(ACTION_URL, {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    Accept: "application/json"
+                                },
+                                body: JSON.stringify({
+                                    config: parsed
+                                })
+                            })
+                        ];
+                    case 2:
+                        response = _state.sent();
+                        return [
+                            4,
+                            response.json()
+                        ];
+                    case 3:
+                        data = _state.sent();
+                        if (!response.ok) {
+                            validationDetails = Array.isArray(data === null || data === void 0 ? void 0 : data.details) ? " ".concat(data.details.join(" ")) : "";
+                            throw new Error(((data === null || data === void 0 ? void 0 : data.error) || "API returned ".concat(response.status)) + validationDetails);
+                        }
+                        setTiers(normalizeTiers(data.tiers));
+                        setUpdatedAt(data.updatedAt || new Date().toISOString());
+                        setSource("state");
+                        setSuccess("Badge configuration saved.");
+                        return [
+                            3,
+                            6
+                        ];
+                    case 4:
+                        saveError = _state.sent();
+                        setError(getErrorMessage(saveError));
+                        return [
+                            3,
+                            6
+                        ];
+                    case 5:
+                        setSaving(false);
+                        return [
+                            7
+                        ];
+                    case 6:
+                        return [
+                            2
+                        ];
+                }
+            });
+        })();
+    }
+    return /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Provider), {
+        colorScheme: "light",
+        background: "base",
+        children: /*#__PURE__*/ (0, _jsxRuntime.jsxs)("main", {
+            className: "dashboard",
+            style: {
+                width: "100%",
+                maxWidth: "1200px",
+                marginInline: 0
+            },
+            children: [
+                /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Heading), {
+                    level: 1,
+                    children: "Badge Configuration"
+                }),
+                /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
+                    children: "Set three discount thresholds and badge texts used by the product badging action."
+                }),
+                loading ? /*#__PURE__*/ (0, _jsxRuntime.jsxs)("div", {
+                    className: "dashboard-loading",
+                    role: "status",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.ProgressCircle), {
+                            "aria-label": "Loading badge configuration",
+                            isIndeterminate: true
+                        }),
+                        /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
+                            children: "Loading badge configuration..."
+                        })
+                    ]
+                }) : error ? /*#__PURE__*/ (0, _jsxRuntime.jsxs)("div", {
+                    className: "dashboard-error",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxRuntime.jsxs)((0, _s2.InlineAlert), {
+                            variant: "negative",
+                            children: [
+                                /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Heading), {
+                                    level: 2,
+                                    children: "Unable to load badge configuration"
+                                }),
+                                /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
+                                    children: error
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Button), {
+                            onPress: function() {
+                                return setRequestVersion(function(version) {
+                                    return version + 1;
+                                });
+                            },
+                            children: "Try again"
+                        })
+                    ]
+                }) : /*#__PURE__*/ (0, _jsxRuntime.jsxs)("section", {
+                    "aria-label": "Badge tiers",
+                    style: {
+                        width: "100%",
+                        maxWidth: "960px"
+                    },
+                    children: [
+                        error ? /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.InlineAlert), {
+                            variant: "negative",
+                            children: /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
+                                children: error
+                            })
+                        }) : null,
+                        success ? /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.InlineAlert), {
+                            variant: "positive",
+                            children: /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
+                                children: success
+                            })
+                        }) : null,
+                        /*#__PURE__*/ (0, _jsxRuntime.jsx)("div", {
+                            style: {
+                                width: "100%",
+                                minWidth: 0,
+                                display: "block"
+                            },
+                            children: /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Card), {
+                                variant: "secondary",
+                                style: {
+                                    width: "100%",
+                                    display: "block"
+                                },
+                                children: /*#__PURE__*/ (0, _jsxRuntime.jsx)("div", {
+                                    style: {
+                                        display: "grid",
+                                        gap: "16px",
+                                        width: "100%"
+                                    },
+                                    children: tiers.map(function(tier, index) {
+                                        var tierLabel = "Tier ".concat(index + 1);
+                                        return /*#__PURE__*/ (0, _jsxRuntime.jsxs)("div", {
+                                            style: {
+                                                display: "grid",
+                                                gap: "10px",
+                                                alignItems: "center",
+                                                gridTemplateColumns: "180px minmax(0, 1fr)",
+                                                width: "100%"
+                                            },
+                                            children: [
+                                                /*#__PURE__*/ (0, _jsxRuntime.jsx)("label", {
+                                                    htmlFor: "percentage-".concat(index),
+                                                    children: /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
+                                                        children: "".concat(tierLabel, " %")
+                                                    })
+                                                }),
+                                                /*#__PURE__*/ (0, _jsxRuntime.jsx)("input", {
+                                                    id: "percentage-".concat(index),
+                                                    type: "number",
+                                                    min: "1",
+                                                    max: "100",
+                                                    step: "1",
+                                                    value: tier.percentage,
+                                                    onChange: function(event) {
+                                                        return updateTier(index, "percentage", event.target.value);
+                                                    },
+                                                    style: {
+                                                        width: "100%",
+                                                        minWidth: 0,
+                                                        minHeight: "34px",
+                                                        boxSizing: "border-box"
+                                                    }
+                                                }),
+                                                /*#__PURE__*/ (0, _jsxRuntime.jsx)("label", {
+                                                    htmlFor: "badge-text-".concat(index),
+                                                    children: /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
+                                                        children: "".concat(tierLabel, " text")
+                                                    })
+                                                }),
+                                                /*#__PURE__*/ (0, _jsxRuntime.jsx)("input", {
+                                                    id: "badge-text-".concat(index),
+                                                    type: "text",
+                                                    value: tier.badgeText,
+                                                    onChange: function(event) {
+                                                        return updateTier(index, "badgeText", event.target.value);
+                                                    },
+                                                    style: {
+                                                        width: "100%",
+                                                        minWidth: 0,
+                                                        minHeight: "34px",
+                                                        boxSizing: "border-box"
+                                                    }
+                                                })
+                                            ]
+                                        }, tierLabel);
+                                    })
+                                })
+                            })
+                        }),
+                        /*#__PURE__*/ (0, _jsxRuntime.jsxs)("div", {
+                            style: {
+                                marginTop: "16px",
+                                display: "flex",
+                                gap: "12px"
+                            },
+                            children: [
+                                /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Button), {
+                                    variant: "primary",
+                                    onPress: saveConfig,
+                                    isPending: saving,
+                                    isDisabled: saving,
+                                    children: "Save badge configuration"
+                                }),
+                                /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Button), {
+                                    variant: "secondary",
+                                    onPress: function() {
+                                        return setRequestVersion(function(version) {
+                                            return version + 1;
+                                        });
+                                    },
+                                    isDisabled: saving,
+                                    children: "Reload"
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
+                            children: "Source: ".concat(source).concat(updatedAt ? " \u2022 Last saved: ".concat(new Date(updatedAt).toLocaleString()) : "")
+                        })
+                    ]
+                })
+            ]
+        })
+    });
+}
+
+},{"@swc/helpers/_/_async_to_generator":"1wSDg","@swc/helpers/_/_define_property":"6MCHz","@swc/helpers/_/_object_spread":"lLgJI","@swc/helpers/_/_object_spread_props":"ghIJZ","@swc/helpers/_/_sliced_to_array":"2dwVQ","@swc/helpers/_/_ts_generator":"9eIyW","react":"eX4i0","@react-spectrum/s2":"9HdLL","react/jsx-runtime":"7CLuA","@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}]},["1kTTj"], "1kTTj", "parcelRequirec253", {})
+
+//# sourceMappingURL=web-src.97f7ca81.js.map

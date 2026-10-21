@@ -1,8 +1,16 @@
 const { Core } = require('@adobe/aio-sdk');
+const stateLib = require('@adobe/aio-lib-state');
 
 const IMS_TOKEN_URL = 'https://ims-na1.adobelogin.com/ims/token/v3';
 const DEFAULT_SCOPES =
   'openid,AdobeID,email,profile,additional_info.roles,additional_info.projectedProductContext,commerce.accs';
+const CONFIG_STATE_KEY = 'badge-config-v1';
+
+const DEFAULT_TIERS = [
+  { percentage: 20, badgeText: 'Deep Discount!' },
+  { percentage: 30, badgeText: 'Super Saver!' },
+  { percentage: 40, badgeText: 'Hot Deal!' },
+];
 
 /**
  * Adobe I/O often stores IMS_OAUTH_S2S_SCOPES in .env as a JSON array string. IMS expects a
@@ -37,12 +45,61 @@ function resolveImsScopeParam (raw, defaultScopes) {
   return normalizeScopeTokens(s);
 }
 
-function isDeepDiscount (listPrice, salePrice) {
-    if (salePrice && salePrice < listPrice) {
-        const discountPercent = ((listPrice - salePrice) / listPrice) * 100;
-        return discountPercent >= 20;
+function normalizeTiers (tiers) {
+  if (!Array.isArray(tiers)) {
+    return DEFAULT_TIERS;
+  }
+
+  const normalized = tiers
+    .map((tier) => ({
+      percentage: Number(tier?.percentage),
+      badgeText: String(tier?.badgeText || '').trim(),
+    }))
+    .filter((tier) => Number.isFinite(tier.percentage) && tier.percentage > 0 && tier.percentage <= 100 && tier.badgeText)
+    .sort((a, b) => a.percentage - b.percentage);
+
+  return normalized.length ? normalized : DEFAULT_TIERS;
+}
+
+async function getBadgeTiersFromState (logger) {
+  try {
+    const state = await stateLib.init();
+    const stored = await state.get(CONFIG_STATE_KEY);
+
+    if (!stored?.value) {
+      return DEFAULT_TIERS;
     }
-    return false;
+
+    const parsed = JSON.parse(stored.value);
+    return normalizeTiers(parsed?.tiers);
+  } catch (error) {
+    logger.warn(`Falling back to default badge tiers: ${error.message}`);
+    return DEFAULT_TIERS;
+  }
+}
+
+function calculateDiscountPercent (listPrice, salePrice) {
+  if (!Number.isFinite(listPrice) || !Number.isFinite(salePrice) || listPrice <= 0 || salePrice >= listPrice) {
+    return 0;
+  }
+  return ((listPrice - salePrice) / listPrice) * 100;
+}
+
+function resolveBadgeForDiscount (discountPercent, tiers) {
+  let matchedTier = null;
+  let matchedTierRank = null;
+
+  tiers.forEach((tier, index) => {
+    if (discountPercent >= tier.percentage) {
+      matchedTier = tier;
+      matchedTierRank = index + 1;
+    }
+  });
+
+  return {
+    matchedTier,
+    matchedTierRank,
+  };
 }
 
 let cachedToken = null;
@@ -114,6 +171,8 @@ async function main (params) {
     const product = await response.json();
     logger.info(JSON.stringify(product, null, 2));
 
+  const badgeTiers = await getBadgeTiersFromState(logger);
+
     const specialPriceAttr = product.custom_attributes?.find(
         attr => attr.attribute_code === "special_price"
     );
@@ -121,17 +180,20 @@ async function main (params) {
     const salePrice = specialPriceAttr
         ? parseFloat(specialPriceAttr.value)
         : null;
-    
-    const listPrice = Number(product.price);
 
-    const deepDiscountFlag = isDeepDiscount(listPrice, salePrice);
-    const deepDiscountBadge = deepDiscountFlag ? 'Deep Discount!' : null;
+    const listPrice = Number(product.price);
+    const discountPercent = calculateDiscountPercent(listPrice, salePrice);
+  const { matchedTier, matchedTierRank } = resolveBadgeForDiscount(discountPercent, badgeTiers);
+  const deepDiscountBadge = matchedTier ? matchedTier.badgeText : null;
 
     const productBadge = {
       sku: product.sku,
       name: product.name,
       price: product.price,
       salesPrice: salePrice,
+      discountPercent: Number(discountPercent.toFixed(2)),
+  tierRank: matchedTierRank,
+      tierThreshold: matchedTier ? matchedTier.percentage : null,
       deepDiscountBadge: deepDiscountBadge,
       enrichedAt: new Date().toISOString(),
     };

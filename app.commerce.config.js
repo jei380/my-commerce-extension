@@ -13,7 +13,7 @@ module.exports = defineConfig({
       description: "Displays enriched order data in Commerce Admin.",
       id: "order_enrichment_admin",
       label: "Order Enrichment",
-      pageTitle: "Enriched Orders Dashboard - Updated",
+      pageTitle: "Enriched Orders Dashboard",
     },
   },
   eventing: {},

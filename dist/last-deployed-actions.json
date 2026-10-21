@@ -1,13 +1,14 @@
 {
-  "course-labs/product-enrichment": "6c731a3d521d868982b5597d78a434d35cacc949bbd9ffed99763823ec46a089",
-  "app-management/__secured_app-config": "9570ecdc2cc5221059f50d84b0951d2e4c618b773c4cf90c7cbd2649cb5bcbfd",
-  "app-management/__secured_installation": "0d92d79e8df3e454e1d448321873d9106166ae79f9c6027ebeb34d1b50a968a5",
+  "course-labs/product-enrichment": "899fe7bf018a7eaf835f825c14a78499fabdf8a03966869056eab84399ee94cc",
+  "app-management/__secured_app-config": "8202e909e3e829e66122d256219ba8a06b98e47fa241d49789902cfb8b3dc527",
+  "app-management/__secured_installation": "34d388d44f9e20b5f333eb19b67f89f1fda9457d6494620d12e4c9bea60fb2bf",
   "app-management/app-config": "1aae1338af86a359e226fa6c6b13633b7f0997d13769273107249fcccabee339",
   "app-management/installation": "8872f3be8ba106e10f4042c0df6a6d3d03a0d1a85f08e292dc8f8d68715ac868",
-  "course-labs/order-event-consumer": "73b87b843a9811e4dc5fb20d863027cbfe37e321c937d07efc013f15e4a4286b",
-  "course-labs/validate-product": "1563dd8641b78a2bd6a42a0d022bd5eeaddf2375e94278726341a90bd8b794f2",
-  "course-labs/product-badging": "4d6164454a90747f1c18c71610cdb5c53d21a17956a844b2d308f8511da32ea8",
-  "app-management/__secured_association": "5881b2b934c95b6404f26e4edc590c068005821f8afc3581db1f9d8b8439366d",
+  "course-labs/order-event-consumer": "3acf129015ae4c800b3d4b224bd0c599c9344471c5d98cfae89c65968d774e74",
+  "course-labs/validate-product": "aa06db13240956ae1ab994e07fcbe1d30879ac2c8b611ec76f208e122fa6ed52",
+  "course-labs/product-badging": "01df19b48affc64e49ea4165f0ce81d9d487248166ad58af21106a73efa40128",
+  "app-management/__secured_association": "910e722363d444cde4fa66b6bd08d1fbfed85c4d440565b6774221824711e4ea",
   "app-management/association": "131a3d58aa1d4ba35a47a52189555b6d0fedc899ed8c68bfcb66df1e8ed100ea",
-  "course-labs/get-enriched-orders": "a83aed241bb6b685e47ab2ea4da8d40c1c5d4c621cc4fbe28514e52e3d28630d"
+  "course-labs/get-enriched-orders": "874f22fd36dcf3e78d30b60843b2aad59e9ad8ff2db16c15cecb5afc6518b72c",
+  "course-labs/badge-config": "809d5115518ac1245100cad2976447be2f61dc970d14e8fb8eeea625f0c20af0"
 }

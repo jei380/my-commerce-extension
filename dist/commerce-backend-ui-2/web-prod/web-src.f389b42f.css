@@ -5061,51 +5061,6 @@
   }
 }
 
-:where(:root, :host) {
-  --s2-color-scheme: light dark;
-  color-scheme: var(--s2-color-scheme);
-  --s2-container-bg: var(--lightningcss-light, #fff) var(--lightningcss-dark, #111);
-  background: var(--s2-container-bg);
-  --s2-scale: 1;
-  --s2-font-size-base: 14;
-  --lightningcss-light: initial;
-  --lightningcss-dark: ;
-}
-
-@media (prefers-color-scheme: dark) {
-  :where(:root, :host) {
-    --lightningcss-light: ;
-    --lightningcss-dark: initial;
-  }
-}
-
-@media not ((hover: hover) and (pointer: fine)) {
-  :where(:root, :host) {
-    --s2-scale: 1.25;
-    --s2-font-size-base: 17;
-  }
-}
-
-:where(:root, :host)[data-color-scheme="light"] {
-  --s2-color-scheme: light;
-  --lightningcss-light: initial;
-  --lightningcss-dark: ;
-}
-
-:where(:root, :host)[data-color-scheme="dark"] {
-  --s2-color-scheme: dark;
-  --lightningcss-light: ;
-  --lightningcss-dark: initial;
-}
-
-:where(:root, :host)[data-background="layer-1"] {
-  --s2-container-bg: var(--lightningcss-light, #f8f8f8) var(--lightningcss-dark, #1b1b1b);
-}
-
-:where(:root, :host)[data-background="layer-2"] {
-  --s2-container-bg: var(--lightningcss-light, #fff) var(--lightningcss-dark, #222);
-}
-
 @layer _.b.t {
   @supports (contain-intrinsic-width: 1px) {
     ._qtb182 {
@@ -5185,4 +5140,49 @@
     }
   }
 }
-/*# sourceMappingURL=web-src.849db66a.css.map */
+
+:where(:root, :host) {
+  --s2-color-scheme: light dark;
+  color-scheme: var(--s2-color-scheme);
+  --s2-container-bg: var(--lightningcss-light, #fff) var(--lightningcss-dark, #111);
+  background: var(--s2-container-bg);
+  --s2-scale: 1;
+  --s2-font-size-base: 14;
+  --lightningcss-light: initial;
+  --lightningcss-dark: ;
+}
+
+@media (prefers-color-scheme: dark) {
+  :where(:root, :host) {
+    --lightningcss-light: ;
+    --lightningcss-dark: initial;
+  }
+}
+
+@media not ((hover: hover) and (pointer: fine)) {
+  :where(:root, :host) {
+    --s2-scale: 1.25;
+    --s2-font-size-base: 17;
+  }
+}
+
+:where(:root, :host)[data-color-scheme="light"] {
+  --s2-color-scheme: light;
+  --lightningcss-light: initial;
+  --lightningcss-dark: ;
+}
+
+:where(:root, :host)[data-color-scheme="dark"] {
+  --s2-color-scheme: dark;
+  --lightningcss-light: ;
+  --lightningcss-dark: initial;
+}
+
+:where(:root, :host)[data-background="layer-1"] {
+  --s2-container-bg: var(--lightningcss-light, #f8f8f8) var(--lightningcss-dark, #1b1b1b);
+}
+
+:where(:root, :host)[data-background="layer-2"] {
+  --s2-container-bg: var(--lightningcss-light, #fff) var(--lightningcss-dark, #222);
+}
+/*# sourceMappingURL=web-src.f389b42f.css.map */
