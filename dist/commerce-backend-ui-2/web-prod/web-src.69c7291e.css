@@ -5185,4 +5185,62 @@
 :where(:root, :host)[data-background="layer-2"] {
   --s2-container-bg: var(--lightningcss-light, #fff) var(--lightningcss-dark, #222);
 }
-/*# sourceMappingURL=web-src.f389b42f.css.map */
+
+.badge-config-page {
+  width: 100%;
+}
+
+.badge-config-section {
+  width: 100%;
+  max-width: 980px;
+}
+
+.badge-config-card-wrap {
+  width: 100%;
+  min-width: 0;
+}
+
+.badge-config-card {
+  width: 100%;
+  display: block;
+}
+
+.badge-config-grid {
+  gap: 16px;
+  width: 100%;
+  display: grid;
+}
+
+.badge-config-row {
+  grid-template-columns: minmax(92px, 120px) minmax(0, 1fr);
+  align-items: center;
+  gap: 10px 12px;
+  width: 100%;
+  display: grid;
+}
+
+.badge-config-label {
+  min-width: 0;
+}
+
+.badge-config-input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 34px;
+}
+
+.badge-config-actions {
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+  display: flex;
+}
+
+@media (width <= 720px) {
+  .badge-config-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+/*# sourceMappingURL=web-src.69c7291e.css.map */

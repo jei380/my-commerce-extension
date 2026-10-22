@@ -5,6 +5,7 @@ const IMS_TOKEN_URL = 'https://ims-na1.adobelogin.com/ims/token/v3';
 const DEFAULT_SCOPES =
   'openid,AdobeID,email,profile,additional_info.roles,additional_info.projectedProductContext,commerce.accs';
 const CONFIG_STATE_KEY = 'badge-config-v1';
+const PRODUCT_BADGE_STATE_PREFIX = 'product-badge-v1.';
 
 const DEFAULT_TIERS = [
   { percentage: 20, badgeText: 'Deep Discount!' },
@@ -59,6 +60,43 @@ function normalizeTiers (tiers) {
     .sort((a, b) => a.percentage - b.percentage);
 
   return normalized.length ? normalized : DEFAULT_TIERS;
+}
+
+function sanitizeStateKeyPart (value) {
+  return String(value || '')
+    .trim()
+    .replace(/[^a-zA-Z0-9-_.]/g, '_');
+}
+
+function getProductBadgeStateKey (sku) {
+  return `${PRODUCT_BADGE_STATE_PREFIX}${sanitizeStateKeyPart(sku)}`;
+}
+
+async function getSavedProductBadgeFromState (sku, logger) {
+  const state = await stateLib.init();
+  const stateKey = getProductBadgeStateKey(sku);
+  const stored = await state.get(stateKey);
+
+  if (!stored?.value) {
+    logger.info(`No saved badge snapshot in state for key: ${stateKey}`);
+    return null;
+  }
+
+  try {
+    const parsed = JSON.parse(stored.value);
+    logger.info(`Loaded saved badge snapshot from state key: ${stateKey}`);
+    return parsed;
+  } catch (error) {
+    logger.warn(`Invalid JSON in state for key ${stateKey}; recomputing badge. Error: ${error.message}`);
+    return null;
+  }
+}
+
+async function saveProductBadgeToState (sku, productBadge, logger) {
+  const state = await stateLib.init();
+  const stateKey = getProductBadgeStateKey(sku);
+  await state.put(stateKey, JSON.stringify(productBadge));
+  logger.info(`Saved product badge snapshot to state key: ${stateKey}`);
 }
 
 async function getBadgeTiersFromState (logger) {
@@ -144,6 +182,14 @@ async function main (params) {
       };
     }
 
+    const savedBadge = await getSavedProductBadgeFromState(sku, logger);
+    if (savedBadge) {
+      return {
+        statusCode: 200,
+        body: savedBadge,
+      };
+    }
+
     logger.info(`Fetching product data for SKU: ${sku}`);
 
     const baseUrl = params.COMMERCE_API_BASE_URL.replace(/\/$/, '');
@@ -169,7 +215,7 @@ async function main (params) {
     }
 
     const product = await response.json();
-    logger.info(JSON.stringify(product, null, 2));
+  logger.info(`Commerce product loaded: sku=${product?.sku}, name=${product?.name}, price=${product?.price}`);
 
   const badgeTiers = await getBadgeTiersFromState(logger);
 
@@ -197,6 +243,8 @@ async function main (params) {
       deepDiscountBadge: deepDiscountBadge,
       enrichedAt: new Date().toISOString(),
     };
+
+    await saveProductBadgeToState(product.sku, productBadge, logger);
 
     logger.info(`Successfully added badge to product: ${sku}`);
 

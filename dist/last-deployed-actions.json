@@ -1,14 +1,15 @@
 {
-  "course-labs/product-enrichment": "899fe7bf018a7eaf835f825c14a78499fabdf8a03966869056eab84399ee94cc",
-  "app-management/__secured_app-config": "8202e909e3e829e66122d256219ba8a06b98e47fa241d49789902cfb8b3dc527",
-  "app-management/__secured_installation": "34d388d44f9e20b5f333eb19b67f89f1fda9457d6494620d12e4c9bea60fb2bf",
+  "course-labs/product-enrichment": "0d36dd7f3debcac43d1302cce8263fd5fa1f2782f1040a782f8d00b51b0a90d3",
+  "app-management/__secured_app-config": "bee6bcd75a3cdd50cd44a71a1c6e3d2a39a728842bd856555a0fde6acb7c0426",
+  "app-management/__secured_installation": "25a8ec2151ee94f2adca8403a080f2104107df72d4ee4e145ee8787815af91a1",
   "app-management/app-config": "1aae1338af86a359e226fa6c6b13633b7f0997d13769273107249fcccabee339",
   "app-management/installation": "8872f3be8ba106e10f4042c0df6a6d3d03a0d1a85f08e292dc8f8d68715ac868",
-  "course-labs/order-event-consumer": "3acf129015ae4c800b3d4b224bd0c599c9344471c5d98cfae89c65968d774e74",
-  "course-labs/validate-product": "aa06db13240956ae1ab994e07fcbe1d30879ac2c8b611ec76f208e122fa6ed52",
-  "course-labs/product-badging": "01df19b48affc64e49ea4165f0ce81d9d487248166ad58af21106a73efa40128",
-  "app-management/__secured_association": "910e722363d444cde4fa66b6bd08d1fbfed85c4d440565b6774221824711e4ea",
+  "course-labs/order-event-consumer": "d074af20e4bb55c963302a278b0114b74fe6e1b2376fa79f7d0f088743b9ebcd",
+  "course-labs/validate-product": "df85ee38b1a965ac46ab4a1e5caec2109b61b8d43992413c6127026ed6a561ca",
+  "course-labs/product-badging": "30d47fe0294af17e1f45bd4440a6f221c168de459b8931e7aa0d93b8f4396255",
+  "app-management/__secured_association": "4dc7f3830c9310a598a4fccbb035b8698f98994df9731ab4d2d0147584661d10",
   "app-management/association": "131a3d58aa1d4ba35a47a52189555b6d0fedc899ed8c68bfcb66df1e8ed100ea",
-  "course-labs/get-enriched-orders": "874f22fd36dcf3e78d30b60843b2aad59e9ad8ff2db16c15cecb5afc6518b72c",
-  "course-labs/badge-config": "809d5115518ac1245100cad2976447be2f61dc970d14e8fb8eeea625f0c20af0"
+  "course-labs/get-enriched-orders": "841c930d5d0dacd7dd7b57c037a5d8ab3c6deebad5a4ed16bcaea740f435c5fa",
+  "course-labs/badge-config": "1b4ad0024bf7523a2694bfa8eb2fc254460c2f5d0a00b5a685655e47777c8c35",
+  "course-labs/set-product-badging": "ba9ec777ea0378514d96aa0510b2ee605598d11360f0befaf43a62c084d1ec92"
 }

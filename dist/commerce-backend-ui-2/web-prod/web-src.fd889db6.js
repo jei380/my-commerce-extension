@@ -86442,6 +86442,7 @@ var _slicedToArray = require("@swc/helpers/_/_sliced_to_array");
 var _tsGenerator = require("@swc/helpers/_/_ts_generator");
 var _react = require("react");
 var _s2 = require("@react-spectrum/s2");
+var _badgeConfigPageCss = require("./badge-config-page.css");
 var _jsxRuntime = require("react/jsx-runtime");
 var ACTION_URL = "https://3967933-237champagnecicada-stage.adobeioruntime.net/api/v1/web/course-labs/badge-config";
 var EMPTY_TIERS = [
@@ -86673,7 +86674,7 @@ function BadgeConfigPage() {
         colorScheme: "light",
         background: "base",
         children: /*#__PURE__*/ (0, _jsxRuntime.jsxs)("main", {
-            className: "dashboard",
+            className: "dashboard badge-config-page",
             style: {
                 width: "100%",
                 maxWidth: "1200px",
@@ -86725,10 +86726,7 @@ function BadgeConfigPage() {
                     ]
                 }) : /*#__PURE__*/ (0, _jsxRuntime.jsxs)("section", {
                     "aria-label": "Badge tiers",
-                    style: {
-                        width: "100%",
-                        maxWidth: "960px"
-                    },
+                    className: "badge-config-section",
                     children: [
                         error ? /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.InlineAlert), {
                             variant: "negative",
@@ -86743,35 +86741,19 @@ function BadgeConfigPage() {
                             })
                         }) : null,
                         /*#__PURE__*/ (0, _jsxRuntime.jsx)("div", {
-                            style: {
-                                width: "100%",
-                                minWidth: 0,
-                                display: "block"
-                            },
+                            className: "badge-config-card-wrap",
                             children: /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Card), {
                                 variant: "secondary",
-                                style: {
-                                    width: "100%",
-                                    display: "block"
-                                },
+                                className: "badge-config-card",
                                 children: /*#__PURE__*/ (0, _jsxRuntime.jsx)("div", {
-                                    style: {
-                                        display: "grid",
-                                        gap: "16px",
-                                        width: "100%"
-                                    },
+                                    className: "badge-config-grid",
                                     children: tiers.map(function(tier, index) {
                                         var tierLabel = "Tier ".concat(index + 1);
                                         return /*#__PURE__*/ (0, _jsxRuntime.jsxs)("div", {
-                                            style: {
-                                                display: "grid",
-                                                gap: "10px",
-                                                alignItems: "center",
-                                                gridTemplateColumns: "180px minmax(0, 1fr)",
-                                                width: "100%"
-                                            },
+                                            className: "badge-config-row",
                                             children: [
                                                 /*#__PURE__*/ (0, _jsxRuntime.jsx)("label", {
+                                                    className: "badge-config-label",
                                                     htmlFor: "percentage-".concat(index),
                                                     children: /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
                                                         children: "".concat(tierLabel, " %")
@@ -86787,14 +86769,10 @@ function BadgeConfigPage() {
                                                     onChange: function(event) {
                                                         return updateTier(index, "percentage", event.target.value);
                                                     },
-                                                    style: {
-                                                        width: "100%",
-                                                        minWidth: 0,
-                                                        minHeight: "34px",
-                                                        boxSizing: "border-box"
-                                                    }
+                                                    className: "badge-config-input"
                                                 }),
                                                 /*#__PURE__*/ (0, _jsxRuntime.jsx)("label", {
+                                                    className: "badge-config-label",
                                                     htmlFor: "badge-text-".concat(index),
                                                     children: /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Text), {
                                                         children: "".concat(tierLabel, " text")
@@ -86807,12 +86785,7 @@ function BadgeConfigPage() {
                                                     onChange: function(event) {
                                                         return updateTier(index, "badgeText", event.target.value);
                                                     },
-                                                    style: {
-                                                        width: "100%",
-                                                        minWidth: 0,
-                                                        minHeight: "34px",
-                                                        boxSizing: "border-box"
-                                                    }
+                                                    className: "badge-config-input"
                                                 })
                                             ]
                                         }, tierLabel);
@@ -86821,11 +86794,7 @@ function BadgeConfigPage() {
                             })
                         }),
                         /*#__PURE__*/ (0, _jsxRuntime.jsxs)("div", {
-                            style: {
-                                marginTop: "16px",
-                                display: "flex",
-                                gap: "12px"
-                            },
+                            className: "badge-config-actions",
                             children: [
                                 /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _s2.Button), {
                                     variant: "primary",
@@ -86856,6 +86825,6 @@ function BadgeConfigPage() {
     });
 }
 
-},{"@swc/helpers/_/_async_to_generator":"1wSDg","@swc/helpers/_/_define_property":"6MCHz","@swc/helpers/_/_object_spread":"lLgJI","@swc/helpers/_/_object_spread_props":"ghIJZ","@swc/helpers/_/_sliced_to_array":"2dwVQ","@swc/helpers/_/_ts_generator":"9eIyW","react":"eX4i0","@react-spectrum/s2":"9HdLL","react/jsx-runtime":"7CLuA","@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}]},["1kTTj"], "1kTTj", "parcelRequirec253", {})
+},{"@swc/helpers/_/_async_to_generator":"1wSDg","@swc/helpers/_/_define_property":"6MCHz","@swc/helpers/_/_object_spread":"lLgJI","@swc/helpers/_/_object_spread_props":"ghIJZ","@swc/helpers/_/_sliced_to_array":"2dwVQ","@swc/helpers/_/_ts_generator":"9eIyW","react":"eX4i0","@react-spectrum/s2":"9HdLL","./badge-config-page.css":"1fcwg","react/jsx-runtime":"7CLuA","@parcel/transformer-js/src/esmodule-helpers.js":"1JSSi"}],"1fcwg":[function() {},{}]},["1kTTj"], "1kTTj", "parcelRequirec253", {})
 
-//# sourceMappingURL=web-src.97f7ca81.js.map
+//# sourceMappingURL=web-src.fd889db6.js.map

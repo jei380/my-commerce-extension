@@ -8,6 +8,7 @@ import {
   Provider,
   Text,
 } from "@react-spectrum/s2";
+import "./badge-config-page.css";
 
 const ACTION_URL =
   "https://3967933-237champagnecicada-stage.adobeioruntime.net/api/v1/web/course-labs/badge-config";
@@ -175,7 +176,7 @@ export function BadgeConfigPage() {
   return (
     <Provider colorScheme="light" background="base">
       <main
-        className="dashboard"
+        className="dashboard badge-config-page"
         style={{
           width: "100%",
           maxWidth: "1200px",
@@ -205,7 +206,7 @@ export function BadgeConfigPage() {
         ) : (
           <section
             aria-label="Badge tiers"
-            style={{ width: "100%", maxWidth: "960px" }}
+            className="badge-config-section"
           >
             {error ? (
               <InlineAlert variant="negative">
@@ -219,23 +220,17 @@ export function BadgeConfigPage() {
               </InlineAlert>
             ) : null}
 
-            <div style={{ width: "100%", minWidth: 0, display: "block" }}>
-              <Card variant="secondary" style={{ width: "100%", display: "block" }}>
-                <div style={{ display: "grid", gap: "16px", width: "100%" }}>
+            <div className="badge-config-card-wrap">
+              <Card variant="secondary" className="badge-config-card">
+                <div className="badge-config-grid">
                   {tiers.map((tier, index) => {
                     const tierLabel = `Tier ${index + 1}`;
                     return (
                       <div
                         key={tierLabel}
-                        style={{
-                          display: "grid",
-                          gap: "10px",
-                          alignItems: "center",
-                          gridTemplateColumns: "180px minmax(0, 1fr)",
-                          width: "100%",
-                        }}
+                        className="badge-config-row"
                       >
-                        <label htmlFor={`percentage-${index}`}>
+                        <label className="badge-config-label" htmlFor={`percentage-${index}`}>
                           <Text>{`${tierLabel} %`}</Text>
                         </label>
                         <input
@@ -246,15 +241,10 @@ export function BadgeConfigPage() {
                           step="1"
                           value={tier.percentage}
                           onChange={(event) => updateTier(index, "percentage", event.target.value)}
-                          style={{
-                            width: "100%",
-                            minWidth: 0,
-                            minHeight: "34px",
-                            boxSizing: "border-box",
-                          }}
+                          className="badge-config-input"
                         />
 
-                        <label htmlFor={`badge-text-${index}`}>
+                        <label className="badge-config-label" htmlFor={`badge-text-${index}`}>
                           <Text>{`${tierLabel} text`}</Text>
                         </label>
                         <input
@@ -262,12 +252,7 @@ export function BadgeConfigPage() {
                           type="text"
                           value={tier.badgeText}
                           onChange={(event) => updateTier(index, "badgeText", event.target.value)}
-                          style={{
-                            width: "100%",
-                            minWidth: 0,
-                            minHeight: "34px",
-                            boxSizing: "border-box",
-                          }}
+                          className="badge-config-input"
                         />
                       </div>
                     );
@@ -276,7 +261,7 @@ export function BadgeConfigPage() {
               </Card>
             </div>
 
-            <div style={{ marginTop: "16px", display: "flex", gap: "12px" }}>
+            <div className="badge-config-actions">
               <Button
                 variant="primary"
                 onPress={saveConfig}
